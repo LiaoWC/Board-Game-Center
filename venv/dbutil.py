@@ -31,3 +31,4 @@ class dbUtils:
 #     print("新增新聞表成功！")
 # else: print("try again1")
 # db.close()
+a= "haha"
