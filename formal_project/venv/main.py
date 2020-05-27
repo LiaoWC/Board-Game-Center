@@ -11,6 +11,10 @@ import random
 app = Flask(__name__)
 app.secret_key = '33_db_project'  # 密鑰
 
+#
+@app.route('/home')
+def home():
+    return render_template('home.html')
 
 # 路由：首頁
 @app.route('/')
