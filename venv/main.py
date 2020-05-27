@@ -1,6 +1,8 @@
 from flask import  Flask,render_template
 from flask import request,session, redirect, url_for
 import random
+
+
 app=Flask(__name__)
 
 app.secret_key='any random string'    #这里我们直接给定一个密钥
