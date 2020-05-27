@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="static/css/login.css" charset="utf-8" >
+</head>
+<body>
+<center>
+    <div class="container" id="title">
+        <h1 align="center">Login Page</h1>
+        <h3 align="center">Enter Username and Password</h3>
+    </div>
+
+
+    <div class="container" id="login_frame">
+        <form action="/loginProcess" method="post">
+            <p><label class="label_input">User</label><input type="text" id="usr" name="nm" class="text_field"/></p>
+            <p><label class="label_input">Password</label><input type="password" id="pwd" name="pwd"
+                                                                 class="text_field"/></p>
+            <div id="login_control">
+                <input class="btn" type="submit" id="btn_login" name="btn_login" value="Login"/>
+                <a id="forget_pwd" href="forget_pwd.html">Forget password?</a>
+            </div>
+        </form>
+    </div>
+
+
+    <!--
+
+    <div>
+        <form action="/loginProcess" method="post">
+        用户名: <input type="text" name="nm"><br>
+        用户密码: <input type="password" name="pwd"> <br>
+        <input type="submit" name="submit" value="登录">
+        </form>
+    </div>
+    -->
+</center>
+</body>
+</html>
