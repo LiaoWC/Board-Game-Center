@@ -1,0 +1,7 @@
+//default menu
+
+select id, name, year_published, board_category
+from info
+where rating<=10
+order by rating desc, rating_player desc
+limit 20;
