@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Board-Game-Center: Your Intelligent Board-Game Assistant!</title>
+    <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/all_pages.css') }}"/>
+    <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/search_frame.css') }}"/>
+    <script type="text/javascript" src="{{ url_for('static', filename='JS/js.js') }}"></script>
+    <link rel="shortcut icon" type="image/svg" href="{{ url_for('static', filename='IMG/favicon.svg') }}">
+</head>
+<body>
+<!--header-->
+  <header>
+      <div id="header_text">
+        <h1><a href="/"></a>Board-Game-Center</h1>
+      </div>
+      <!--p>Your intelligent board game assistant!</p-->
+      <div id="searchName_frame">
+          <form action="/search_name" method="post">
+                <p>
+                    <label class="searchName_label_input">Search games directly?</label>
+                    <input type="text" id="searchName" name="searchName" class="text_field"/>
+                    <input class="btn" type="submit" id="btn_searchName" name="btn_searchName" value="Go"/>
+                </p>
+
+          </form>
+      </div>
+  </header>
+ <!--nav-->
+  <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="/statistics">Statistics</a></li>
+    </ul>
+  </nav>
+
+<center>
+    <img src="{{ url_for('static', filename='/IMG/home_1.png') }}"/>
+</center>
+  <!--article-->
+    <!--arti></arti>cle ><p>內容區</p>
+    <section>< section ><p>網頁內容的區塊-1</p></section>
+  </article-->
+  <!--aside>
+    < aside ><p>側邊欄位可放置額外資訊、相關連結等</p>
+  </aside-->
+ <!--footer-->
+  <footer>
+    < group-33 >
+      <p>頁腳處，可在此聲明版權、使用規範等等．
+        <a href="https://github.com/LiaoWC/db_33_boardgame" target="_blank">Github</a>．
+        <a href="/credit">Credit</a>
+        <div id = 'show_time'></div>
+      </p>
+
+  </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
