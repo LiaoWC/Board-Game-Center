@@ -87,7 +87,24 @@ select "World War I" as board_category, sum(a.playtime)/sum(a.cnt)*2 as avg_play
 select "World War II" as board_category, sum(a.playtime)/sum(a.cnt)*2 as avg_playtime from (select sum(min_playtime)+sum(max_playtime) as playtime, count(id) as cnt from info where board_category like '%World War II%' and max_playtime!=0 group by board_category)as a union
 select "Zombies" as board_category, sum(a.playtime)/sum(a.cnt)*2 as avg_playtime from (select sum(min_playtime)+sum(max_playtime) as playtime, count(id) as cnt from info where board_category like '%Zombies%' and max_playtime!=0 group by board_category)as a;
 
-result:
+top 15:
+Card Game          		146         
+Wargame            		684         
+Children's Game    		90.572198781
+Dice               		178         
+Fantasy            		256.26304739
+Abstract Strategy  		124         
+Miniatures         		414         
+Educational        		166         
+Party Game         		172         
+Science Fiction    		354         
+Fighting           		272.69397993
+Trivia             		180         
+Economic           		406         
+Movies/TV/Radio theme  	180         
+Print & Play       		204         
+
+all result:
 board_category     avg_playtime
 -----------------  ------------
 Abstract Strategy  124         
