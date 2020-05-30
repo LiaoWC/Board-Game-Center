@@ -7,19 +7,28 @@ from flask import Flask, render_template,request
 # 亂數使用
 import random
 
+# sqlite3資料庫預備
+import sqlite3Utils
+dbFileName = 'table.db' # 檔名
+
 # 初始創建與執行(這一段要放在程式最後面，不然可能頁面出不來)
 app = Flask(__name__)
 app.secret_key = '33_db_project'  # 密鑰
 
-#
-@app.route('/home')
-def home():
-    return render_template('home.html')
+
 
 # 路由：首頁
+@app.route('/home')
 @app.route('/')
+def home():
+    db = sqlite3Utils.sqlite3Utils(dbFileName)
+    resList = db.home_search()
+    return render_template('home.html',bgList=resList)
+
+# 路由：篩選搜尋
+@app.route('/filter')
 def index():
-    return render_template('index.html')
+    return render_template('search_filters.html')
 
 
 # 依名稱搜尋

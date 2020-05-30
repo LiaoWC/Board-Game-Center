@@ -1,4 +1,4 @@
-class Sqlite3Utils:
+class sqlite3Utils:
     def __init__(self, dbName):
         import sqlite3
         self.connection = sqlite3.connect(dbName)
@@ -17,9 +17,18 @@ class Sqlite3Utils:
         self.connection.commit()
         self.connection.close()
 
+    def home_search(self):
+        sql = "select name, max_player, min_player, max_playtime, min_playtime from info where rating<=10 order by rating desc, rating_player desc limit 5;"
+        resList = self.db_exec(sql, 1)
+        self.close()
+        return resList
 
-dbName = 'test.db'
-db = Sqlite3Utils(dbName)
-sql = 'select * from test'
-resList = db.db_exec(sql, 1)
-print(resList)
+
+# dbName = 'test.db'
+# db = Sqlite3Utils(dbName)
+# sql = 'select * from test'
+# resList = db.db_exec(sql, 1)
+# print(resList)
+
+
+

@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Board-Game-Center: Your Intelligent Board-Game Assistant!</title>
+    <!--##################################################################################################-->
     <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/all_pages.css') }}"/>
     <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/search_frame.css') }}"/>
     <script type="text/javascript" src="{{ url_for('static', filename='JS/js.js') }}"></script>
     <link rel="shortcut icon" type="image/svg" href="{{ url_for('static', filename='IMG/favicon.svg') }}">
+    <link rel ="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/home.css') }}">
+    <link rel ="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/table.css') }}">
+    <!--##################################################################################################-->
 </head>
 <body>
 <!--header-->
@@ -33,11 +37,29 @@
         <li><a href="blog.html">Blog</a></li>
         <li><a href="news.html">News</a></li>
         <li><a href="/statistics">Statistics</a></li>
+        <li><a href="/filter">Find board-games suitable for you!</a> </li>
     </ul>
   </nav>
 
 <center>
-    <img src="{{ url_for('static', filename='/IMG/home_1.png') }}"/>
+    <div id="center_container">
+        <img id="centerIMG" src="{{ url_for('static', filename='/IMG/exploration_board_game_center.png') }}"/>
+        <h3>Top Rating Games</h3>
+        <table>
+            <tr>
+                <th>Games</th>
+                <th>Players</th>
+                <th>Playtime</th>
+            </tr>
+            {% for bg in bgList:  %}
+                <tr>
+                    <td>{{bg[0]}}</td>
+                    <td>{{bg[2]}}~{{bg[1]}}</td>
+                    <td>{{bg[4]}}~{{bg[3]}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 </center>
   <!--article-->
     <!--arti></arti>cle ><p>內容區</p>
