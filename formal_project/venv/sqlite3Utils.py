@@ -23,6 +23,8 @@ class sqlite3Utils:
         self.close()
         return resList
 
+    def filter_search(self, num_people,game_time, game_category):
+        sql = ""
 
 # dbName = 'test.db'
 # db = Sqlite3Utils(dbName)

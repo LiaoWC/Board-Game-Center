@@ -5,7 +5,6 @@
     <title>Board-Game-Center: Your Intelligent Board-Game Assistant!</title>
     <!--##################################################################################################-->
     <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/all_pages.css') }}"/>
-    <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/search_frame.css') }}"/>
     <script type="text/javascript" src="{{ url_for('static', filename='JS/js.js') }}"></script>
     <link rel="shortcut icon" type="image/svg" href="{{ url_for('static', filename='IMG/favicon.svg') }}">
     <link rel ="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/home.css') }}">
@@ -40,7 +39,7 @@
         <li><a href="/filter">Find board-games suitable for you!</a> </li>
     </ul>
   </nav>
-
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 <center>
     <div id="center_container">
         <img id="centerIMG" src="{{ url_for('static', filename='/IMG/exploration_board_game_center.png') }}"/>
@@ -53,14 +52,16 @@
             </tr>
             {% for bg in bgList:  %}
                 <tr>
-                    <td>{{bg[0]}}</td>
-                    <td>{{bg[2]}}~{{bg[1]}}</td>
-                    <td>{{bg[4]}}~{{bg[3]}}</td>
+                    <td>  {{bg[0]}}</td>
+                    <td>{{bg[1]}}</td>
+                    <td>{{bg[2]}}</td>
                 </tr>
             {% endfor %}
         </table>
     </div>
 </center>
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+
   <!--article-->
     <!--arti></arti>cle ><p>內容區</p>
     <section>< section ><p>網頁內容的區塊-1</p></section>

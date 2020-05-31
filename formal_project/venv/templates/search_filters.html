@@ -1,12 +1,84 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Board-Game-Center: Your Intelligent Board-Game Assistant!</title>-->
+
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;header&ndash;&gt;-->
+<!--  <header>-->
+<!--      <div id="header_text">-->
+<!--        <h1><a href="/"></a>Board-Game-Center</h1>-->
+<!--      </div>-->
+<!--      &lt;!&ndash;p>Your intelligent board game assistant!</p&ndash;&gt;-->
+<!--      <div id="searchName_frame">-->
+<!--          <form action="/search_name" method="post">-->
+<!--                <p>-->
+<!--                    <label class="searchName_label_input">Search games directly?</label>-->
+<!--                    <input type="text" id="searchName" name="searchName" class="text_field"/>-->
+<!--                    <input class="btn" type="submit" id="btn_searchName" name="btn_searchName" value="Go"/>-->
+<!--                </p>-->
+
+<!--          </form>-->
+<!--      </div>-->
+<!--  </header>-->
+<!-- &lt;!&ndash;nav&ndash;&gt;-->
+<!--  <nav>-->
+<!--    <ul>-->
+<!--        <li><a href="/">Home</a></li>-->
+<!--        <li><a href="blog.html">Blog</a></li>-->
+<!--        <li><a href="news.html">News</a></li>-->
+<!--        <li><a href="/statistics">Statistics</a></li>-->
+<!--    </ul>-->
+<!--  </nav>-->
+<!--&lt;!&ndash;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&ndash;&gt;-->
+
+
+
+<!--&lt;!&ndash;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@&ndash;&gt;-->
+<!--  &lt;!&ndash;article&ndash;&gt;-->
+<!--    &lt;!&ndash;arti></arti>cle ><p>內容區</p>-->
+<!--    <section>< section ><p>網頁內容的區塊-1</p></section>-->
+<!--  </article&ndash;&gt;-->
+<!--  &lt;!&ndash;aside>-->
+<!--    < aside ><p>側邊欄位可放置額外資訊、相關連結等</p>-->
+<!--  </aside&ndash;&gt;-->
+<!-- &lt;!&ndash;footer&ndash;&gt;-->
+<!--  <footer>-->
+<!--    < group-33 >-->
+<!--      <p>頁腳處，可在此聲明版權、使用規範等等．-->
+<!--        <a href="https://github.com/LiaoWC/db_33_boardgame" target="_blank">Github</a>．-->
+<!--        <a href="/credit">Credit</a>-->
+<!--        <div id = 'show_time'></div>-->
+<!--      </p>-->
+
+<!--  </footer>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Board-Game-Center: Your Intelligent Board-Game Assistant!</title>
+    <!--##################################################################################################-->
     <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/all_pages.css') }}"/>
     <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/search_frame.css') }}"/>
     <script type="text/javascript" src="{{ url_for('static', filename='JS/js.js') }}"></script>
     <link rel="shortcut icon" type="image/svg" href="{{ url_for('static', filename='IMG/favicon.svg') }}">
+    <link rel ="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/home.css') }}">
+    <!--##################################################################################################-->
 </head>
 <body>
 <!--header-->
@@ -33,55 +105,60 @@
         <li><a href="blog.html">Blog</a></li>
         <li><a href="news.html">News</a></li>
         <li><a href="/statistics">Statistics</a></li>
+        <li><a href="/filter">Find board-games suitable for you!</a> </li>
     </ul>
   </nav>
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 <center>
-    <div class="container" id="title">
-        <h1 align="center">Tell us your demands.</h1>
-    </div>
-    <div class="container" id="login_frame">
-        <form action="/search_filter" method="post">
-            <p><label class="label_input">Number of people</label><input type="text" id="numPeople" name="numPeople" class="text_field"/></p>
-            <p><label class="label_input">Game time</label>
-                <select id="gameTime" name="gameTime" class="text_field"/>
-                    <option value="All" selected="selected">All</option>
-                    <option value="<30 minutes"><30 minutes</option>
-                    <option value="30~60 minutes">30~60 minutes</option>
-                    <option value="1~2 hours">1~2 hours</option>
-                    <option value=">2 hours">>2 hours</option>
-                </select>
-            </p>
-            <p><label class="label_input">Game Category</label>
-                <select id="gameCategory" name="gameCategory" class="text_field"/>
-                    <option valeu = "All" selected="selected">All</option>
-                    <option valeu = "Card Game">Card Game</option>
-                    <option valeu = "Wargame">Wargame</option>
-                    <option valeu = "Children's Game">Children's Game</option>
-                    <option valeu = "Dice">Dice</option>
-                    <option valeu = "Fantasy">Fantasy</option>
-                    <option valeu = "Abstract Strategy">Abstract Strategy</option>
-                    <option valeu = "Miniatures">Miniatures</option>
-                    <option valeu = "Educational">Educational</option>
-                    <option valeu = "Party Game">Party Game</option>
-                    <option valeu = "Science Fiction">Science Fiction</option>
-                    <option valeu = "Fighting">Fighting</option>
-                    <option valeu = "Trivia">Trivia</option>
-                    <option valeu = "Economic">Economic</option>
-                    <option valeu = "Movies / TV / Radio theme">Movies / TV / Radio theme</option>
-                    <option valeu = "Print & Play">Print & Play</option>
-                    <option valeu = "Others">Others</option>
-                </select>
-            </p>
-            <div id="login_control">
-                <input class="btn" type="submit" id="btn_login" name="btn_login" value="Go"/>
+    <div class="frame">
+        <div id="title"> <!--class="container"-->
+            <h1 align="center">Too many board-games to choose?<br />Let us recommend you!</h1>
+        </div>
+        <div id="sub_frame">
+            <h3>Tell us about you.</h3>
+            <div class="container" id="login_frame">
+                <form action="/search_filter" method="post">
+                    <p><label class="label_input">Number of people</label><input type="text" id="numPeople" name="numPeople" class="text_field"/></p>
+                    <p><label class="label_input">Game time</label>
+                        <select id="gameTime" name="gameTime" class="text_field"/>
+                            <option value="All" selected="selected">All</option>
+                            <option value="<30 minutes"><30 minutes</option>
+                            <option value="30~60 minutes">30~60 minutes</option>
+                            <option value="1~2 hours">1~2 hours</option>
+                            <option value=">2 hours">>2 hours</option>
+                        </select>
+                    </p>
+                    <p><label class="label_input">Game Category</label>
+                        <select id="gameCategory" name="gameCategory" class="text_field"/>
+                            <option valeu = "All" selected="selected">All</option>
+                            <option valeu = "Card Game">Card Game</option>
+                            <option valeu = "Wargame">Wargame</option>
+                            <option valeu = "Children's Game">Children's Game</option>
+                            <option valeu = "Dice">Dice</option>
+                            <option valeu = "Fantasy">Fantasy</option>
+                            <option valeu = "Abstract Strategy">Abstract Strategy</option>
+                            <option valeu = "Miniatures">Miniatures</option>
+                            <option valeu = "Educational">Educational</option>
+                            <option valeu = "Party Game">Party Game</option>
+                            <option valeu = "Science Fiction">Science Fiction</option>
+                            <option valeu = "Fighting">Fighting</option>
+                            <option valeu = "Trivia">Trivia</option>
+                            <option valeu = "Economic">Economic</option>
+                            <option valeu = "Movies / TV / Radio theme">Movies / TV / Radio theme</option>
+                            <option valeu = "Print & Play">Print & Play</option>
+                            <option valeu = "Others">Others</option>
+                        </select>
+                    </p>
+                    <div id="login_control">
+                        <input class="btn" type="submit" id="btn_login" name="btn_login" value="Go"/>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </center>
-
-
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+
   <!--article-->
     <!--arti></arti>cle ><p>內容區</p>
     <section>< section ><p>網頁內容的區塊-1</p></section>
@@ -101,6 +178,11 @@
   </footer>
 </body>
 </html>
+
+
+
+
+
 
 
 

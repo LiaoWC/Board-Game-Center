@@ -2,19 +2,22 @@
 ifDebugMode = True
 
 # flask使用
-from flask import Flask, render_template,request
+from flask import Flask, render_template, request
 
 # 亂數使用
 import random
 
 # sqlite3資料庫預備
 import sqlite3Utils
-dbFileName = 'table.db' # 檔名
+
+dbFileName = 'table.db'  # 檔名
+
+# 其它自訂涵數預備
+import other_functions
 
 # 初始創建與執行(這一段要放在程式最後面，不然可能頁面出不來)
 app = Flask(__name__)
 app.secret_key = '33_db_project'  # 密鑰
-
 
 
 # 路由：首頁
@@ -23,29 +26,38 @@ app.secret_key = '33_db_project'  # 密鑰
 def home():
     db = sqlite3Utils.sqlite3Utils(dbFileName)
     resList = db.home_search()
-    return render_template('home.html',bgList=resList)
+    print(resList)
+    newList = other_functions.home_top_rating_list(resList)
+    return render_template('home.html', bgList=newList)
 
-# 路由：篩選搜尋
+
+# 路由：篩選搜尋選擇頁面
 @app.route('/filter')
 def index():
     return render_template('search_filters.html')
 
 
+# 依篩選條件搜尋(Column: name, board_category, players(加工), playtime(加工), rating, rating_player)
+# query得到的八欄，加工後六欄
+@app.route('/search_filter', methods=['POST'])
+def search_filter():
+    num_people = request.form['numPeople']
+    game_time = request.form['gameTime']
+    game_category = request.form['gameCategory']
+    # print(numPeople, gameTime, gameCategory)
+    db = Sqlite3Utils.Sqlite3Utils('fileName')
+    db = db.filter_search(num_people,game_time,game_category)
+    resList =
+    return
+
+
 # 依名稱搜尋
 @app.route('/search_name', methods=['POST'])
 def search_name():
-    nameBeSearched = request.form['searchName'] # nameBeSearched 是使用者輸入的字
+    nameBeSearched = request.form['searchName']  # nameBeSearched 是使用者輸入的字
     print(nameBeSearched)
     return "great"
 
-# 依篩選條件搜尋
-@app.route('/search_filter', methods=['POST'])
-def search_filter():
-    numPeople = request.form['numPeople']
-    gameTime = request.form['gameTime']
-    gameCategory = request.form['gameCategory']
-    print(numPeople,gameTime,gameCategory)
-    return "grea"
 
 # 路由：感謝、引用
 @app.route('/credit')
