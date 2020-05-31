@@ -24,7 +24,7 @@ class Sqlite3Utils:
         return resList
 
     def filter_search(self, num_people, game_time, game_category):
-        sql = "select name, board_category, min_player, max_player, min_playtime, max_playtime, rating, rating_player from info where "
+        sql = "select name, board_category, min_player, max_player, min_playtime, max_playtime, rating, rating_players from info where "
         # players
         sql = sql + "min_player <= " + str(num_people) + " and " + "max_player >= " + str(num_people) + " "
         # game_time
@@ -54,6 +54,28 @@ class Sqlite3Utils:
         resList = self.db_exec(sql, 1)
         self.close()
         return resList
+
+    def name_search(self, bg_name):
+        sqlA = "select name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, rating, rating_player "
+        sqlA = sql + "where name = \'" + bg_name + "\' ;"
+        resList = self.db_exec(sqlA, 1)
+        sqlB = "select rating, rating_players from user_rating,info "
+        sqlB = sqlB + " where info.name = user_rating.rate and name = \'" + self.solve_apostrophe(bg_name) + "\' ;"
+        resListB = self.db_exec(sqlB, 1)
+        newList = resList
+        newList[8] = newList[8] + resListB[8]
+        newList[9] = newList[9] + resListB[9]
+        self.close()
+        return newList
+
+    def solve_apostrophe(self, string):
+        newStr = ""
+        for i in string:
+            if i == "'":
+                string = string + i + i
+            else:
+                string = string + i
+        return newStr
 
 # dbName = 'test.db'
 # db = Sqlite3Utils(dbName)

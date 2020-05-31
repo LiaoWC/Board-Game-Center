@@ -65,6 +65,13 @@ def search_name():
 def credit():
     return render_template('credit.html')
 
+# 直接搜尋名字
+@app.route('/directly_search_name/<string:bg_name>')
+def directly_search_name(bg_name):
+    # name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, rating, rating_player
+    return bg_name
+
+
 
 # run(這一段要放在程式最後面，不然可能頁面出不來)
 if __name__ == '__main__':

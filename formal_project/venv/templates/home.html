@@ -51,8 +51,8 @@
                 <th>Playtime</th>
             </tr>
             {% for bg in bgList:  %}
-                <tr>
-                    <td>  {{bg[0]}}</td>
+                <tr onclick="document.location='/directly_search_name/{{bg[0]}}'">
+                    <td>{{bg[0]}}</td>
                     <td>{{bg[1]}}</td>
                     <td>{{bg[2]}}</td>
                 </tr>
