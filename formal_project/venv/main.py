@@ -8,7 +8,7 @@ from flask import Flask, render_template, request
 import random
 
 # sqlite3資料庫預備
-import sqlite3Utils
+import Sqlite3Utils
 
 dbFileName = 'table.db'  # 檔名
 
@@ -24,7 +24,7 @@ app.secret_key = '33_db_project'  # 密鑰
 @app.route('/home')
 @app.route('/')
 def home():
-    db = sqlite3Utils.sqlite3Utils(dbFileName)
+    db = Sqlite3Utils.Sqlite3Utils(dbFileName)
     resList = db.home_search()
     print(resList)
     newList = other_functions.home_top_rating_list(resList)
@@ -44,23 +44,24 @@ def search_filter():
     num_people = request.form['numPeople']
     game_time = request.form['gameTime']
     game_category = request.form['gameCategory']
-    # print(numPeople, gameTime, gameCategory)
-    db = Sqlite3Utils.Sqlite3Utils('fileName')
-    db = db.filter_search(num_people,game_time,game_category)
-    resList =
-    return
+    # print(num_people, game_time, game_category)
+    db = Sqlite3Utils.Sqlite3Utils(dbFileName)
+    resList = db.filter_search(num_people, game_time, game_category)
+    newList = other_functions.filter_search_list(resList)
+    return render_template('search_filter_result.html', bgList=newList)
 
 
 # 依名稱搜尋
 @app.route('/search_name', methods=['POST'])
 def search_name():
     nameBeSearched = request.form['searchName']  # nameBeSearched 是使用者輸入的字
-    print(nameBeSearched)
+    # print(nameBeSearched)
+    # print(type(nameBeSearched))
     return "great"
 
 
 # 路由：感謝、引用
-@app.route('/credit')
+@app.route('/source')
 def credit():
     return render_template('credit.html')
 

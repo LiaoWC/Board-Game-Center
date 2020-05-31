@@ -22,7 +22,7 @@
           <form action="/search_name" method="post">
                 <p>
                     <label class="searchName_label_input">Search games directly?</label>
-                    <input type="text" id="searchName" name="searchName" class="text_field"/>
+                    <input type="text" id="searchName" name="searchName" class="text_field" required="required"/>
                     <input class="btn" type="submit" id="btn_searchName" name="btn_searchName" value="Go"/>
                 </p>
 
@@ -72,12 +72,17 @@
  <!--footer-->
   <footer>
     < group-33 >
-      <p>頁腳處，可在此聲明版權、使用規範等等．
-        <a href="https://github.com/LiaoWC/db_33_boardgame" target="_blank">Github</a>．
-        <a href="/credit">Credit</a>
-        <div id = 'show_time'></div>
+      <p>
+        <a href="https://github.com/LiaoWC/db_33_boardgame" target="_blank">
+            <img src="{{ url_for('static', filename='IMG/github.png') }}" class="footer_icon" alt="Github">
+        </a>
+        <a href="https://www.notion.so/4-28-33-Proposal-98066f91128548558ba1c60a31788b5a" target="_blank">
+            <img src="{{ url_for('static', filename='IMG/notion.png') }}" class="footer_icon" alt="Notion">
+        </a>
+        <a href="/source">
+            <img src="{{ url_for('static', filename='IMG/icons8-love-100.png') }}" class="footer_icon" alt="Source and Credit">
+        </a>
       </p>
-
   </footer>
 </body>
 </html>
