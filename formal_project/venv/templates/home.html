@@ -1,46 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Board-Game-Center: Your Intelligent Board-Game Assistant!</title>
-    <!--##################################################################################################-->
-    <link rel = "stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/all_pages.css') }}"/>
-    <script type="text/javascript" src="{{ url_for('static', filename='JS/js.js') }}"></script>
-    <link rel="shortcut icon" type="image/svg" href="{{ url_for('static', filename='IMG/favicon.svg') }}">
-    <link rel ="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/home.css') }}">
-    <link rel ="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/table.css') }}">
-    <!--##################################################################################################-->
-</head>
-<body>
-<!--header-->
-  <header>
-      <div id="header_text">
-        <h1><a href="/"></a>Board-Game-Center</h1>
-      </div>
-      <!--p>Your intelligent board game assistant!</p-->
-      <div id="searchName_frame">
-          <form action="/search_name" method="post">
-                <p>
-                    <label class="searchName_label_input">Search games directly?</label>
-                    <input type="text" id="searchName" name="searchName" class="text_field" required="required"/>
-                    <input class="btn" type="submit" id="btn_searchName" name="btn_searchName" value="Go"/>
-                </p>
+{% extends "layout.html" %}
 
-          </form>
-      </div>
-  </header>
- <!--nav-->
-  <nav>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="/statistics">Statistics</a></li>
-        <li><a href="/filter">Find board-games suitable for you!</a> </li>
-    </ul>
-  </nav>
-<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-<center>
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/home.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/table.css') }}">
+{% endblock %}
+
+{% block center %}
     <div id="center_container">
         <img id="centerIMG" src="{{ url_for('static', filename='/IMG/exploration_board_game_center.png') }}"/>
         <h3>Top Rating Games</h3>
@@ -50,53 +15,13 @@
                 <th>Players</th>
                 <th>Playtime</th>
             </tr>
-            {% for bg in bgList:  %}
-                <tr onclick="document.location='/directly_search_name/{{bg[0]}}'">
-                    <td>{{bg[0]}}</td>
-                    <td>{{bg[1]}}</td>
-                    <td>{{bg[2]}}</td>
-                </tr>
+            {% for bg in bgList: %}
+            <tr onclick="document.location='/directly_search_name/{{bg[0]}}'">
+                <td>{{bg[0]}}</td>
+                <td>{{bg[1]}}</td>
+                <td>{{bg[2]}}</td>
+            </tr>
             {% endfor %}
         </table>
     </div>
-</center>
-<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-
-  <!--article-->
-    <!--arti></arti>cle ><p>內容區</p>
-    <section>< section ><p>網頁內容的區塊-1</p></section>
-  </article-->
-  <!--aside>
-    < aside ><p>側邊欄位可放置額外資訊、相關連結等</p>
-  </aside-->
- <!--footer-->
-  <footer>
-    < group-33 >
-      <p>
-        <a href="https://github.com/LiaoWC/db_33_boardgame" target="_blank">
-            <img src="{{ url_for('static', filename='IMG/github.png') }}" class="footer_icon" alt="Github">
-        </a>
-        <a href="https://www.notion.so/4-28-33-Proposal-98066f91128548558ba1c60a31788b5a" target="_blank">
-            <img src="{{ url_for('static', filename='IMG/notion.png') }}" class="footer_icon" alt="Notion">
-        </a>
-        <a href="/source">
-            <img src="{{ url_for('static', filename='IMG/icons8-love-100.png') }}" class="footer_icon" alt="Source and Credit">
-        </a>
-      </p>
-  </footer>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{% endblock%}

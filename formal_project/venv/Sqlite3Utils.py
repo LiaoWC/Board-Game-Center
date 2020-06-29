@@ -24,7 +24,7 @@ class Sqlite3Utils:
         return resList
 
     def filter_search(self, num_people, game_time, game_category):
-        sql = "select name, board_category, min_player, max_player, min_playtime, max_playtime, rating, rating_players from info where "
+        sql = "select name, board_category, min_player, max_player, min_playtime, max_playtime, rating, rating_player from info where "
         # players
         sql = sql + "min_player <= " + str(num_people) + " and " + "max_player >= " + str(num_people) + " "
         # game_time
@@ -56,12 +56,12 @@ class Sqlite3Utils:
         return resList
 
     def name_search(self, bg_name):
-        sqlA = "select name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, rating, rating_player "
-        sqlA = sql + "where name = \'" + bg_name + "\' ;"
+        sqlA = "select name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, info.rating as info_rating, info.rating_player as info_rating_player from info,user_rating "
+        sqlA = sqlA + "where name like \'%" + bg_name + "%\' and info.id = user_rating.game_id;"
         resList = self.db_exec(sqlA, 1)
-        sqlB = "select rating, rating_players from user_rating,info "
-        sqlB = sqlB + " where info.name = user_rating.rate and name = \'" + self.solve_apostrophe(bg_name) + "\' ;"
-        resListB = self.db_exec(sqlB, 1)
+        # sqlB = "select rating, rating_players from user_rating,info "
+        # sqlB = sqlB + " where info.name = user_rating.rate and name = \'" + self.solve_apostrophe(bg_name) + "\' ;"
+        # resListB = self.db_exec(sqlB, 1)
         newList = resList
         newList[8] = newList[8] + resListB[8]
         newList[9] = newList[9] + resListB[9]

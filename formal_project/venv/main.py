@@ -2,7 +2,7 @@
 ifDebugMode = True
 
 # flask使用
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 # 亂數使用
 import random
@@ -31,16 +31,22 @@ def home():
     return render_template('home.html', bgList=newList)
 
 
+# 路由：感謝、引用
+@app.route('/source')
+def credit():
+    return render_template('source.html')
+
+
 # 路由：篩選搜尋選擇頁面
-@app.route('/filter')
-def index():
+@app.route('/search_filters')
+def search_filters():
     return render_template('search_filters.html')
 
 
 # 依篩選條件搜尋(Column: name, board_category, players(加工), playtime(加工), rating, rating_player)
 # query得到的八欄，加工後六欄
-@app.route('/search_filter', methods=['POST'])
-def search_filter():
+@app.route('/search_filter_result', methods=['POST'])
+def search_filter_result():
     num_people = request.form['numPeople']
     game_time = request.form['gameTime']
     game_category = request.form['gameCategory']
@@ -55,22 +61,32 @@ def search_filter():
 @app.route('/search_name', methods=['POST'])
 def search_name():
     nameBeSearched = request.form['searchName']  # nameBeSearched 是使用者輸入的字
-    # print(nameBeSearched)
-    # print(type(nameBeSearched))
-    return "great"
+    return redirect('directly_search_name/' + nameBeSearched)
 
-
-# 路由：感謝、引用
-@app.route('/source')
-def credit():
-    return render_template('credit.html')
 
 # 直接搜尋名字
 @app.route('/directly_search_name/<string:bg_name>')
 def directly_search_name(bg_name):
     # name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, rating, rating_player
+    db = Sqlite3Utils.Sqlite3Utils(dbFileName)
+    resList = db.name_search(bg_name)
+    ###
     return bg_name
 
+
+@app.route('/game_info/<string:bg_name>')
+def game_info(bg_name):
+    return render_template('game_info.html', bg_name=bg_name)
+
+@app.route('/rate/<string:bg_name>')
+def rate(bg_name):
+    db = Sqlite3Utils.Sqlite3Utils(dbFileName)
+    # sql = "INSERT INTO user_rating(game_id,rating) VALUES("+");"
+
+# test
+@app.route('/test')
+def test():
+    return render_template('test.html')
 
 
 # run(這一段要放在程式最後面，不然可能頁面出不來)
