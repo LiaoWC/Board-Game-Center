@@ -76,6 +76,8 @@ def directly_search_name(bg_name):
 
 @app.route('/game_info/<string:bg_name>')
 def game_info(bg_name):
+    db = Sqlite3Utils.Sqlite3Utils(dbFileName)
+    resList = db.game_info(bg_name)
     return render_template('game_info.html', bg_name=bg_name)
 
 @app.route('/rate/<string:bg_name>')

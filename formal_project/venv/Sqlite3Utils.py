@@ -67,7 +67,14 @@ class Sqlite3Utils:
         newList[9] = newList[9] + resListB[9]
         self.close()
         return newList
-
+        
+    def game_info(self, bg_name):
+        sql = "select name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, info.rating as info_rating, info.rating_player as info_rating_player from info "
+        sql = sql + "where name = \'" + bg_name + "\';"
+        resList = self.db_exec(sql, 1)
+        self.close()
+        return resList
+        
     def solve_apostrophe(self, string):
         newStr = ""
         for i in string:
