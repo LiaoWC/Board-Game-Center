@@ -24,7 +24,7 @@ class Sqlite3Utils:
         return resList
         
     def home_search(self):
-        sql = "select name, max_player, min_player, max_playtime, min_playtime from info left join (select game_id as id, sum(rating) as rating, count(rating) as rating_player from user_rating group by game_id)as ur on info.id=ur.id where info.rating<=10 and name not like \'%Expansion%\' and board_category not like \'%Expansion%\' order by case when ur.rating is NULL then (info.rating*info.rating_player+550)/(info.rating_player+100) else (info.rating*info.rating_player+ur.rating*ur.rating_player+550)/(info.rating_player+ur.rating_player+100) end desc, case when ur.rating is null then info.rating_player+100 else(info.rating_player+ur.rating_player+100) end desc limit 5;"
+        sql = "select name, max_player, min_player, max_playtime, min_playtime from info left join (select game_id as id, sum(rating) as rating, count(rating) as rating_player from user_rating group by game_id)as ur on info.id=ur.id where info.rating<=10 and name not like \'%Expansion%\' and board_category not like \'%Expansion%\' order by case when ur.rating is NULL then (info.rating*info.rating_player+550)/(info.rating_player+100) else (info.rating*info.rating_player+ur.rating+550)/(info.rating_player+ur.rating_player+100) end desc, case when ur.rating is null then info.rating_player+100 else (info.rating_player+ur.rating_player+100) end desc limit 5;"
         resList = self.db_exec(sql, 1)
         self.close()
         return resList
@@ -68,13 +68,13 @@ class Sqlite3Utils:
         # game_time
         # if 'All':no play_time restriction
         if game_time == '<30 minutes':
-            sql = sql + " and (max_playtime<=30 & max_playtime>=0)|(min_playtime<=30 & min_playtime>=0)|(max_playtime>=30 & min_playtime<=0) "
+            sql = sql + " and max_playtime<=30 "
         elif game_time == '30~60 minutes':
-            sql = sql + " and (max_playtime<=60 & max_playtime>=30)|(min_playtime<=60 & min_playtime>=30)|(max_playtime>=60 & min_playtime<=30) "
+            sql = sql + " and (max_playtime<60 and max_playtime>=30) or (min_playtime<60 and min_playtime>=30) or (max_playtime>=60 and min_playtime<=30) "
         elif game_time == '1~2 hours':
-            sql = sql + " and (max_playtime<=120 & max_playtime>=60)|(min_playtime<=120 & min_playtime>=90)|(max_playtime>=120 & min_playtime<=90) "
+            sql = sql + " and (max_playtime<120 and max_playtime>=60) or (min_playtime<120 and min_playtime>=60) or (max_playtime>=120 and min_playtime<=60) "
         elif game_time == '>2 hours':
-            sql = sql + " and (max_playtime>=120)|(min_playtime>=120) "
+            sql = sql + " and min_playtime>=120 "
         #不能有Expansion
         sql = sql + " and info.rating<=10 and name not like \'%Expansion%\' and board_category not like \'%Expansion%\' "
         # game_category
