@@ -1,0 +1,30 @@
+div#info>h1 {
+    font-size: 4em;
+    margin-bottom: 0;
+}
+
+div#info_detail>p {
+    font-size: 2em;
+    text-align: left;
+}
+
+div#info_detail {
+    max-width: 700px;
+    background-color: #F2D1CE;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#rating_detail {
+    font-size: 4em;
+}
+
+#rating_stars {
+    color: orange;
+    font-size: 8em;
+    padding: 0;
+    margin: 0;
+}

@@ -55,3 +55,39 @@ def filter_search_list(old_list):
         newRow.append(str(row[7]))
         newList.append(newRow)
     return newList
+
+
+def name_search_list(old_list):
+    newList = []
+    for row in old_list:
+        newRow = []
+        # 放入桌遊名稱
+        newRow.append(row[0])
+        # 放入出版年份
+        newRow.append(row[1])
+        # 放入category
+        newRow.append(row[2])
+        # 放入players
+        if row[3] == row[4]:
+            newRow.append(row[3])
+        else:
+            if row[3] < row[4]:
+                newRow.append(str(row[3]) + '~' + str(row[4]))
+            else:
+                newRow.append(str(row[4]) + '~' + str(row[3]))
+        # 放入playtime
+        if row[5] == row[6]:
+            newRow.append(row[5])
+        else:
+            if row[5] < row[6]:
+                newRow.append(str(row[5]) + '~' + str(row[6]))
+            else:
+                newRow.append(str(row[6]) + '~' + str(row[5]))
+        # 放入age
+        newRow.append(str(row[7]))
+        # 放入rating
+        newRow.append(str(row[8]))
+        # 放入rating_players
+        newRow.append(str(row[9]))
+        newList.append(newRow)
+    return newList

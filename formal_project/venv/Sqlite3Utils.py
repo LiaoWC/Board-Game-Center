@@ -96,7 +96,7 @@ class Sqlite3Utils:
         self.close()
         return resList
 
-    def name_search＿old(self, bg_name):
+    def name_search_old(self, bg_name):
         sqlA = "select name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, info.rating as info_rating, info.rating_player as info_rating_player from info,user_rating "
         sqlA = sqlA + "where name like \'%" + bg_name + "%\' and info.id = user_rating.game_id;"
         resList = self.db_exec(sqlA, 1)
@@ -127,14 +127,14 @@ class Sqlite3Utils:
         self.close()
         return resList
         
-    def solve_apostrophe(self, string):
-        newStr = ""
-        for i in string:
-            if i == "'":
-                string = string + i + i
-            else:
-                string = string + i
-        return newStr
+    # def solve_apostrophe(self, string):
+    #     newStr = ""
+    #     for i in string:
+    #         if i == "'":
+    #             string = string + i + i
+    #         else:
+    #             string = string + i
+    #     return newStr
 
 # dbName = 'test.db'
 # db = Sqlite3Utils(dbName)

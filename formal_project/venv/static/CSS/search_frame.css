@@ -87,6 +87,7 @@ form p>* {
 }
 
 .text_field {
+    cursor: context-menu;
     width: 278px;
     height: 30px;
     /* border-top-left-radius: 5px;
@@ -112,13 +113,12 @@ form p>* {
     /* justify-content: center; */
 }
 
-#sub_frame {}
-
 h3 {
     color: rgb(119, 136, 153);
 }
 
-#btn_login {
+#btn_sub {
+    cursor: pointer;
     font-size: 18px;
     width: 130px;
     height: 28px;

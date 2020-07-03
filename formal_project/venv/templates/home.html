@@ -6,22 +6,22 @@
 {% endblock %}
 
 {% block center %}
-    <div id="center_container">
-        <img id="centerIMG" src="{{ url_for('static', filename='/IMG/exploration_board_game_center.png') }}"/>
-        <h3>Top Rating Games</h3>
-        <table>
-            <tr>
-                <th>Games</th>
-                <th>Players</th>
-                <th>Playtime</th>
-            </tr>
-            {% for bg in bgList: %}
-            <tr onclick="document.location='/directly_search_name/{{bg[0]}}'">
-                <td>{{bg[0]}}</td>
-                <td>{{bg[1]}}</td>
-                <td>{{bg[2]}}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
+<div id="center_container">
+    <img id="centerIMG" src="{{ url_for('static', filename='/IMG/exploration_board_game_center.png') }}"/>
+    <h3>Top Rating Games</h3>
+    <table id="myTable">
+        <tr>
+            <th>Games</th>
+            <th>Players</th>
+            <th>Playtime</th>
+        </tr>
+        {% for bg in bgList: %}
+        <tr class="td_row" onclick="document.location='/game_info/{{bg[0]}}'">
+            <td>{{bg[0]}}</td>
+            <td>{{bg[1]}}</td>
+            <td style="cursor:pointer;">{{bg[2]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock%}

@@ -10,7 +10,7 @@
         <h1>Tell us about you.</h1>
         <div class="container" id="login_frame">
             <form action="/search_filter_result" method="post">
-                <p><label class="label_input">Number of people</label><input type="text" required="required"
+                <p><label class="label_input">Number of people</label><input type="number" min="1" required="required"
                                                                              id="numPeople" name="numPeople"
                                                                              class="text_field"/></p>
                 <p><label class="label_input">Game time</label>
@@ -44,7 +44,7 @@
                     </select>
                 </p>
                 <div id="login_control">
-                    <input class="btn" type="submit" id="btn_login" name="btn_login" value="Go"/>
+                    <input class="btn" type="submit" id="btn_sub" name="btn_sub" value="Go"/>
                 </div>
             </form>
         </div>

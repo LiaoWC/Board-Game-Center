@@ -8,25 +8,6 @@
 {% block center %}
 <div id="center_container">
     <h1>{% block table_name %}{% endblock %}</h1>
-    <table>
-        <tr>
-            <th>Games</th>
-            <th>Category</th>
-            <th>Players</th>
-            <th>Playtime</th>
-            <th>Rating</th>
-            <th>Number of rating</th>
-        </tr>
-        {% for bg in bgList: %}
-        <tr>
-            <td><a href="/game_info/{{bg[0]}}">{{bg[0]}}</a></td>
-            <td>{{bg[1]}}</td>
-            <td>{{bg[2]}}</td>
-            <td>{{bg[3]}}</td>
-            <td>{{bg[4]}}</td>
-            <td>{{bg[5]}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    {% block table %}{% endblock %}
 </div>
 {% endblock %}

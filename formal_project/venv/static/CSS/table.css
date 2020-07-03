@@ -2,7 +2,7 @@ table {
     border-collapse: collapse;
     width: 90%;
     max-width: 700px;
-    text-align: left;
+    overflow: scroll;
 }
 
 table tr td {
@@ -10,3 +10,65 @@ table tr td {
     border: 3px white dashed;
     border-radius: 0.3px;
 }
+
+td {
+    text-align: left;
+}
+
+th {
+    text-align: center;
+}
+
+.td_row:hover {
+    cursor: pointer;
+    background-color: #F2D1CE;
+}
+
+#name_row {
+    max-width: 150px;
+}
+
+#year_published_row {
+    max-width: 30px;
+}
+
+#category_row {
+    max-width: 280px;
+    overflow-wrap: break-word;
+}
+
+#players_row {
+    max-width: 40px;
+}
+
+#playtime_row {
+    max-width: 40px;
+}
+
+#age_row {
+    max-width: 30px;
+}
+
+#rating_round_row {
+    max-width: 50px;
+}
+
+#number_of_rating_row {
+    max-width: 50px;
+}
+
+#myTable {
+    /* padding: 100px; */
+    /* padding-bottom: 200px; */
+    margin-bottom: 100px;
+    max-width: 670px;
+    overflow-wrap: break-word;
+}
+
+
+/* 150 300 60 60 50 50 */
+
+
+/* td {
+    overflow: auto;
+} */

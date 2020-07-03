@@ -1,5 +1,35 @@
-{% extends "search_result.html" %}
+{% extends "search_result_withPages.html" %}
 
 {% block table_name %}
-Result
+Search Result
+{% endblock %}
+
+{% block table %}
+<table id="myTable">
+    <tr>
+        <th>Games</th>
+        <th>Year Published</th>
+        <th>Category</th>
+        <th>Players</th>
+        <th>Playtime</th>
+        <th>Age</th>
+        <th>Rating</th>
+        <th>Number of rating</th>
+    </tr>
+    {% for bg in bgList: %}
+    <tr class="td_row" onclick="document.location='/game_info/{{bg[0]}}'">
+        <!--            <td><a href="/game_info/{{bg[0]}}">{{bg[0]}}</a></td>-->
+        <td id="name_row">{{bg[0]}}</td>
+        <td id="year_published_row">{{bg[1]}}</td>
+        <td id="category_row">{{bg[2]}}</td>
+        <td id="players_row">{{bg[3]}}</td>
+        <td id="playtime_row">{{bg[4]}}</td>
+        <td id="age_row">{{bg[5]}}</td>
+        {% set rating_float = bg[6] | float %}
+        <td id="rating_round_row">{{ rating_float | round(2,'common')}}</td>
+        <td id="number_of_rating_row">{{bg[7]}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{{ super() }}
 {% endblock %}

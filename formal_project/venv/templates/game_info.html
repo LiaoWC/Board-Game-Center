@@ -1,13 +1,32 @@
 {% extends "layout.html" %}
 
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/home.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/table.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/game_info.css') }}">
+<script type="text/javascript" src="{{url_for('static', filename='JS/rating_stars.js')}}"></script>
 {% endblock %}
 
 {% block center %}
+<div id="info">
+    <h1>{{bg_name}}</h1>
+    <div id="rating_stars" value="{{bg_info[6]}}"></div>
+    <div id="rating_detail">
+        Rating Score:
+        {% set rating_float = bg_info[6] | float %}
+        <a id="rating">{{ rating_float | round(2,'common')}}</a>
+    </div>
+    <div id="info_detail">
+        <p>
+            <b>Number of Rating:</b> {{bg_info[7]}}<br/>
+            <b>Year Published:</b> {{bg_info[1]}}<br/>
+            <b>Category:</b> {{bg_info[2]}}<br/>
+            <b>Players:</b> {{bg_info[3]}}<br/>
+            <b>Playtime:</b> {{bg_info[4]}}<br/>
+            <b>Age:</b> {{bg_info[5]}}<br/>
+        </p>
+    </div>
+</div>
 <div id="rate">
-    <h1>Rate for {{bg_name}}!</h1>
+    <h1>Rate for this game!</h1>
     <form action="/">
 
     </form>
