@@ -6,6 +6,7 @@ div#info>h1 {
 div#info_detail>p {
     font-size: 2em;
     text-align: left;
+    overflow-wrap: break-word;
 }
 
 div#info_detail {

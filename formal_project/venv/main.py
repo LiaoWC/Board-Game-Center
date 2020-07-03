@@ -2,7 +2,7 @@
 ifDebugMode = True
 
 # flask使用
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 
 # 亂數使用
 import random
@@ -14,6 +14,7 @@ dbFileName = 'table.db'  # 檔名
 
 # 其它自訂涵數預備
 import other_functions
+from draw_dynamic import draw_dynamic
 
 # 初始創建與執行(這一段要放在程式最後面，不然可能頁面出不來)
 app = Flask(__name__)
@@ -88,6 +89,47 @@ def game_info(bg_name):
 def rate(bg_name):
     db = Sqlite3Utils.Sqlite3Utils(dbFileName)
     # sql = "INSERT INTO user_rating(game_id,rating) VALUES("+");"
+
+
+@app.route('/statistics')
+def statistics():
+    return render_template('statistics_home.html')
+
+
+@app.route('/statistics/category_to_time')
+def category_to_time():
+    return render_template("statistics/category_to_time.html")
+
+
+@app.route('/statistics/circulation_to_publishedyear')
+def circulation_to_publishedyear():
+    return render_template("statistics/circulation_to_publishedyear.html")
+
+
+@app.route('/statistics/category_to_rating')
+def category_to_rating():
+    db = Sqlite3Utils.Sqlite3Utils(dbFileName)
+    resList = db.category_to_rating_query()
+    # For testing
+    # category = [("Abstract Strategy", 9.8), ("Card Game", 9), ("Children's Game", 6.7), ("Dice", 8.1),
+    #             ("Economic", 9.2),
+    #             ("Educational", 8.8), ("Fantasy", 9.0), ("Fighting", 7.6), ("Miniatures", 3.6),
+    #             ("Movies/TV/Radio theme", 9.5), ("Party Game", 8.3), ("Print & Play", 6.9),
+    #             ("Science Fiction", 7.6), ("Trivia", 7.8), ("Wargame", 8.5)]
+    rand_num = random.randint(0,9999999999999999999999999)
+    # draw_dynamic(category, rand_num)
+    draw_dynamic(resList, rand_num)
+    # if 'flip' in session:
+    #     session['flip'] = rand_num
+    #     # if session['flip'] == rand_num:
+    #     #     session['flip'] = 1  # reading and updating session data
+    #     # else:
+    #     #     session['flip'] = 0
+    # else:
+    #     # session['flip'] = 0  # setting session data
+    #     session['flip'] = rand_num
+    # # print(session['flip'])
+    return render_template("statistics/category_to_rating.html", flip=rand_num )
 
 
 # test

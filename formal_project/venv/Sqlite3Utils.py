@@ -126,7 +126,17 @@ class Sqlite3Utils:
         resList = self.db_exec(sql, 1)
         self.close()
         return resList
-        
+
+    def category_to_rating_query(self):
+        f = open("category_to_rating_sql.txt",'r')
+        sql = ''
+        for row in f:
+            sql += row
+        f.close()
+        resList = self.db_exec(sql,1)
+        self.close()
+        return resList
+
     # def solve_apostrophe(self, string):
     #     newStr = ""
     #     for i in string:
@@ -141,3 +151,5 @@ class Sqlite3Utils:
 # sql = 'select * from test'
 # resList = db.db_exec(sql, 1)
 # print(resList)
+
+
