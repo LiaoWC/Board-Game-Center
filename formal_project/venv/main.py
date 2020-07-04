@@ -81,14 +81,9 @@ def game_info(bg_name):
     db = Sqlite3Utils.Sqlite3Utils(dbFileName)
     resList = db.game_info(bg_name)
     newList = other_functions.name_search_list(resList)
+    print("resList: " ,resList)
     info = newList[0]
     return render_template('game_info.html', bg_name=bg_name, bg_info=info)
-
-
-@app.route('/rate/<string:bg_name>')
-def rate(bg_name):
-    db = Sqlite3Utils.Sqlite3Utils(dbFileName)
-    # sql = "INSERT INTO user_rating(game_id,rating) VALUES("+");"
 
 
 @app.route('/statistics')
@@ -116,7 +111,7 @@ def category_to_rating():
     #             ("Educational", 8.8), ("Fantasy", 9.0), ("Fighting", 7.6), ("Miniatures", 3.6),
     #             ("Movies/TV/Radio theme", 9.5), ("Party Game", 8.3), ("Print & Play", 6.9),
     #             ("Science Fiction", 7.6), ("Trivia", 7.8), ("Wargame", 8.5)]
-    rand_num = random.randint(0,9999999999999999999999999)
+    rand_num = random.randint(0, 9999999999999999999999999)
     # draw_dynamic(category, rand_num)
     draw_dynamic(resList, rand_num)
     # if 'flip' in session:
@@ -129,17 +124,35 @@ def category_to_rating():
     #     # session['flip'] = 0  # setting session data
     #     session['flip'] = rand_num
     # # print(session['flip'])
-    return render_template("statistics/category_to_rating.html", flip=rand_num )
+    return render_template("statistics/category_to_rating.html", flip=rand_num)
 
 
-# test
-@app.route('/test')
-def test():
-    return render_template('test.html')
+# 按了評分星星後
+@app.route('/rate/<bgname>/<rating>')
+def rate(bgname, rating):
+    bgname = str(bgname)
+    rating = int(rating)
+    db = Sqlite3Utils.Sqlite3Utils(dbFileName)
+    sqlA = "SELECT game_id FROM info,user_rating WHERE info.id = user_rating.game_id and info.name = \"" + bgname + "\";"
+    id_list = (db.db_exec(sqlA, 1))
+    if len(id_list) == 0:
+        return "This game \"" + bgname + "\" does not exist in the database."
+    game_id = id_list[0][0]
+    print("game_id: ", game_id)
+    sqlB = "INSERT INTO user_rating(game_id,rating) values(" + str(game_id) +","+ str(rating) + ")"
+    if not db.db_exec(sqlB, 0):
+        return "Rate unsuccessfully."
+    db.close()
+    redirect_link = '/game_info/' + str(bgname)
+    return redirect(redirect_link)
+
+@app.route('/bulb')
+def bulb():
+    return render_template('Bulb/index.html')
 
 
 # run(這一段要放在程式最後面，不然可能頁面出不來)
 if __name__ == '__main__':
     # app.run(port=(random.randint(20000, 30000)), host="127.0.0.1", debug=ifDebugMode)  # port在20000~30000隨機選一個
     # app.run(port=30003, host="0.0.0.0", debug=ifDebugMode)  # port在20000~30000隨機選一個
-    app.run(port=80, host='0.0.0.0', debug=ifDebugMode)
+    app.run(port=8000, host='0.0.0.0', debug=ifDebugMode)

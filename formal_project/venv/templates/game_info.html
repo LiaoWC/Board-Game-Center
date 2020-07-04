@@ -7,7 +7,7 @@
 
 {% block center %}
 <div id="info">
-    <h1>{{bg_name}}</h1>
+    <h1 name="{{bg_name}}">{{bg_name}}</h1>
     <div id="rating_stars" value="{{bg_info[6]}}"></div>
     <div id="rating_detail">
         Rating Score:
@@ -27,8 +27,17 @@
 </div>
 <div id="rate">
     <h1>Rate for this game!</h1>
-    <form action="/">
-
-    </form>
+    <div class="rating_number">
+        <span id="rate10">10</span>
+        <span id="rate9">9</span>
+        <span id="rate8">8</span>
+        <span id="rate7">7</span>
+        <span id="rate6">6</span>
+        <span id="rate5">5</span>
+        <span id="rate4">4</span>
+        <span id="rate3">3</span>
+        <span id="rate2">2</span>
+        <span id="rate1">1</span>
+    </div>
 </div>
 {% endblock %}

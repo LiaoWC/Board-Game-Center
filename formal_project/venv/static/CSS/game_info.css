@@ -29,3 +29,32 @@ div#info_detail {
     padding: 0;
     margin: 0;
 }
+
+.rating_number {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    font-size: 2em;
+    text-align: center;
+}
+
+.rating_number>span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+
+.rating_number>span:hover:before,
+.rating_number>span:hover~span:before {
+    content: "\2605";
+    position: absolute;
+    color: gold;
+    opacity: 0.8;
+}
+
+#rate {
+    margin-bottom: 50px;
+}
+
+div#rate>h1 {
+    margin-bottom: 10px;
+}

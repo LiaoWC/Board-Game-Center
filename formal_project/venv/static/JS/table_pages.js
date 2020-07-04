@@ -1,7 +1,7 @@
 // source: https://codertw.com/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/285514/
 
 
-var pageSize = 15; //每頁顯示的記錄條數
+var pageSize = 10; //每頁顯示的記錄條數 
 var curPage = 0; //當前頁
 var lastPage; //最後頁
 var direct = 0; //方向
@@ -64,12 +64,14 @@ $(document).ready(function display() {
             alert("Please type positive integer.");
             return;
         }
-        len = $("#mytable tr").length;
+        len = $("#myTable tr").length;
         len = len - 1;
         page = len % pageSize == 0 ? len / pageSize : Math.floor(len / pageSize) + 1; //根據記錄條數，計算頁數
         curPage = 1; //當前頁
         direct = 0; //方向
-        firstPage();
+        curPage = 1;
+        direct = 0;
+        displayPage();
     });
 });
 
@@ -94,7 +96,7 @@ function displayPage() {
     }
 
 
-    document.getElementById("btn0").innerHTML = "Current page:" + curPage + "/ " + page + " 每頁"; // 顯示當前多少頁
+    document.getElementById("btn0").innerHTML = "Current page: " + curPage + "/ " + page + " 每頁"; // 顯示當前多少頁
 
     begin = (curPage - 1) * pageSize + 1; // 起始記錄號
     end = begin + 1 * pageSize;
@@ -102,8 +104,8 @@ function displayPage() {
 
 
     if (end > len) end = len;
-    $("#mytable tr").hide(); // 首先，設定這行為隱藏
-    $("#mytable tr").each(function(i) { // 然後，通過條件判斷決定本行是否恢復顯示
+    $("#myTable tr").hide(); // 首先，設定這行為隱藏
+    $("#myTable tr").each(function(i) { // 然後，通過條件判斷決定本行是否恢復顯示
         if ((i >= begin && i <= end) || i == 0) //顯示begin<=x<=end的記錄
             $(this).show();
     });

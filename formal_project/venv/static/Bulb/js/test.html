@@ -1,0 +1,19 @@
+<!-- Get Permsiion -->
+<button type="button" id="btnGetNotification">取得顯示通知權限</button>
+
+<script>
+    $('#btnGetNotification').click(function() {
+
+        if (Notification && Notification.permission === 'default') {
+            Notification.requestPermission(function(permission) {
+                if (!('permission' in Notification)) {
+                    Notification.permission = permission;
+                }
+            });
+        } else if (Notification.permission === 'granted') {
+            alert('已經有取得權限了!');
+        } else {
+            alert('請檢查是否你的瀏覽器支援');
+        }
+    });
+</script>
