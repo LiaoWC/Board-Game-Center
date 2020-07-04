@@ -121,9 +121,13 @@ class Sqlite3Utils:
         return resList
         
     def game_info(self, bg_name):
-        sql = "select name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, info.rating as info_rating, info.rating_player as info_rating_player from info "
-        sql = sql + "where name = \'" + bg_name + "\';"
+        sql = "select name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, case when ur.rating is NULL then info.rating else ((info.rating*info.rating_player)+(ur.rating))/(info.rating_player+ur.rating_player)end, case when ur.rating is NULL then info.rating_player else info.rating_player+ur.rating_player end from info left join (select game_id as id, sum(rating) as rating, count(rating) as rating_player from user_rating group by game_id)as ur on info.id=ur.id "
+        sql = sql + "where name = \'" + bg_name + "\' "
+        sql = sql + "and info.rating<=10 and name not like \'%Expansion%\' and board_category not like \'%Expansion%\' "
+        #sql = sql + "limit 10"
+        sql = sql + ";"
         resList = self.db_exec(sql, 1)
+        print(resList)
         self.close()
         return resList
 
