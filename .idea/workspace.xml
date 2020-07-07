@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a28e4c8-3073-4463-8c0a-cbd764dcbb76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/bgweb_tried.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/formal_project/venv/static/Bulb/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formal_project/venv/static/Bulb/js/csmapi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formal_project/venv/static/Bulb/js/dai.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formal_project/venv/static/Bulb/js/dan.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formal_project/venv/static/Bulb/js/ida.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formal_project/venv/static/Bulb/js/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formal_project/venv/static/Bulb/js/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formal_project/venv/static/Bulb/js/test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formal_project/venv/static/Bulb/js/warning.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formal_project/venv/templates/Bulb/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/formal_project/venv/templates/Bulb/index.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +32,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/formal_project" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -42,9 +48,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="548" y="153" key="FileChooserDialogImpl" timestamp="1591006684043">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="685" y="223" width="424" height="484" key="FileChooserDialogImpl" timestamp="1594101470893">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="548" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1591006684043" />
+    <state x="685" y="223" width="424" height="484" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1594101470893" />
   </component>
 </project>

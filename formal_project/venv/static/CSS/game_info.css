@@ -52,9 +52,80 @@ div#info_detail {
 }
 
 #rate {
-    margin-bottom: 50px;
+    margin-bottom: 120px;
 }
 
 div#rate>h1 {
     margin-bottom: 10px;
+}
+
+@media screen and (max-width:800px) {
+    div#info>h1 {
+        font-size: 2.8em;
+    }
+    div#info_detail>p {
+        font-size: 1.8em;
+    }
+    div#info_detail {
+        max-width: 85%;
+    }
+    #rating_detail {
+        font-size: 3em;
+    }
+    #rating_stars {
+        font-size: 6em;
+    }
+}
+
+@media screen and (max-width:560px) {
+    div#info>h1 {
+        font-size: 2.6em;
+    }
+    div#info_detail>p {
+        font-size: 1.6em;
+    }
+    #rating_detail {
+        font-size: 2.4em;
+    }
+    #rating_stars {
+        font-size: 5em;
+    }
+}
+
+@media screen and (max-width:560px) {
+    div#info>h1 {
+        font-size: 2.2em;
+    }
+    div#info_detail>p {
+        font-size: 1.3em;
+        text-align: left;
+        overflow-wrap: break-word;
+    }
+    div#info_detail {
+        max-width: 80%;
+        background-color: #F2D1CE;
+        padding-top: 10px;
+        padding-bottom: 15px;
+        border-radius: 10px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    #rating_detail {
+        font-size: 1.8em;
+    }
+    #rating_stars {
+        color: orange;
+        font-size: 4em;
+        padding: 0;
+        margin: 0;
+    }
+    .rating_number {
+        font-size: 1.6em;
+    }
+    div#rate h1 {
+        font-size: 1.95em;
+    }
+    .rating_number>span {
+        width: 1em;
+    }
 }

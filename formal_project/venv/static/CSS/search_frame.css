@@ -64,6 +64,10 @@ form p>* {
     vertical-align: middle;
 }
 
+#sub_frame {
+    padding-bottom: 120px;
+}
+
 
 /*
     #image_logo {
@@ -153,4 +157,23 @@ h3 {
 
 #login_control {
     padding: 0 28px;
+}
+
+@media screen and (max-width: 514px) {
+    #login_frame {
+        /* background-color: transparent; */
+        width: 87%;
+    }
+    #numPeople,
+    #gameTime,
+    #gameCategory {
+        border-width: 3px;
+        /* border-style: dashed;
+        border-color: #FFAC55; */
+        padding: 3px;
+        width: 75%;
+    }
+    /* #searchName.text_field {
+         width: %; 
+    } */
 }

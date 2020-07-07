@@ -19,3 +19,24 @@ $(".td_row").css("cursor: pointer");
 //$(document).ready(function(){
 //    $("#rating_round_row") = round_two_digit($("#rating_round_row").text().toString());
 //})
+$(document.getElementById("menu_btn").addEventListener('click', function(e) {
+    $(this).toggleClass('active');
+    $('#menu_ul').toggleClass('active');
+    $("#searchNameFrame_inNav").toggleClass("active");
+}));
+
+//var vv = document.getElementById("menu_btn");
+//if(vv){
+//    vv.addEventListener('click', function(e) {
+//     $(this).toggleClass('active');
+//     $('#menu_ul').toggleClass('active');
+// })}
+
+// $('#menu_ul li').click(function() {
+//     $(this).parent().find('li').each(function() {
+//         if ($(this).hasClass('current-active')) {
+//             $(this).toggleClass('current-active');
+//         }
+//     })
+//     $(this).toggleClass('current-active');
+//})

@@ -146,13 +146,13 @@ def rate(bgname, rating):
     redirect_link = '/game_info/' + str(bgname)
     return redirect(redirect_link)
 
-@app.route('/bulb')
-def bulb():
-    return render_template('Bulb/index.html')
 
+@app.route('/test')
+def test():
+    return render_template('test.html')
 
 # run(這一段要放在程式最後面，不然可能頁面出不來)
 if __name__ == '__main__':
     # app.run(port=(random.randint(20000, 30000)), host="127.0.0.1", debug=ifDebugMode)  # port在20000~30000隨機選一個
     # app.run(port=30003, host="0.0.0.0", debug=ifDebugMode)  # port在20000~30000隨機選一個
-    app.run(port=8000, host='0.0.0.0', debug=ifDebugMode)
+    app.run(port=80, host='0.0.0.0', debug=ifDebugMode)

@@ -7,14 +7,15 @@ Search Result
 {% block table %}
 <table id="myTable">
     <tr>
-        <th>Games</th>
-        <th>Year Published</th>
-        <th>Category</th>
-        <th>Players</th>
-        <th>Playtime</th>
-        <th>Age</th>
-        <th>Rating</th>
-        <th>Number of rating</th>
+        <th class="empty_th"></th>
+        <th class="Games_th">Games</th>
+        <th class="Year_Published_th">Year Published</th>
+        <th class="Category_th">Category</th>
+        <th class="Players_th">Players</th>
+        <th class="Playtime_th">Playtime</th>
+        <th class="Age_th">Age</th>
+        <th class="Rating_th">Rating</th>
+        <th class="Number_of_rating_th">Number of rating</th>
     </tr>
     {% for bg in bgList: %}
     <tr class="td_row" onclick="document.location='/game_info/{{bg[0]}}'">

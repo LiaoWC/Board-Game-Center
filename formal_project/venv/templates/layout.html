@@ -2,24 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board-Game-Center: Your Intelligent Board-Game Assistant!</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/all_pages.css') }}"/>
-     <script type="text/javascript" src="{{ url_for('static', filename='JS/js.js') }}"></script>
-    <link rel="shortcut icon" type="image/svg" href="{{ url_for('static', filename='IMG/favicon.svg') }}">
     {% block head %}
     <!--##################################################################################################-->
     <!--##################################################################################################-->
     {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/all_pages.css') }}"/>
+    <link rel="shortcut icon" type="image/svg" href="{{ url_for('static', filename='IMG/favicon.svg') }}">
 </head>
 <body>
+
 <!--header-->
 <header>
     <div id="header_text">
-        <h1><a href="/"></a>Board-Game-Center</h1>
+        <h1><a id="home_link_text" href="/home">Board-Game-Center</a></h1>
     </div>
     <!--p>Your intelligent board game assistant!</p-->
-    <div id="searchName_frame">
+    <div class="searchName_frame" id="searchName_frame_inUpperRight">
         <form action="/search_name" method="post">
             <p>
                 <label class="searchName_label_input">Search games directly?</label>
@@ -31,14 +32,24 @@
 </header>
 <!--nav-->
 <nav>
-    <ul>
-        <li><a href="/">Home</a></li>
-<!--        <li><a href="blog.html">Blog</a></li>-->
+    <a id="menu_btn" class="toggle-nav" href="#">&#9776;</a>
+    <ul id="menu_ul" class="active">
+        <li><a href="/" class="current-active">Home</a></li>
+        <!--        <li><a href="blog.html">Blog</a></li>-->
         <li><a href="http://www.nctu.edu.tw" target="_blank">School</a></li>
         <li><a href="https://www.cwb.gov.tw" target="_blank">Weather</a></li>
         <li><a href="/statistics">Statistics</a></li>
         <li><a href="/search_filters">Find board-games suitable for you!</a></li>
     </ul>
+    <div class="searchName_frame active" id="searchNameFrame_inNav">
+        <form action="/search_name" method="post">
+            <p>
+                <label class="searchName_label_input" id="searchName_label_input_inNav">Search games:</label>
+                <input type="text" id="searchName_inNav" name="searchName" class="text_field" required="required"/>
+                <input class="btn" type="submit" id="btn_searchName_inNav" name="btn_searchName" value="Go"/>
+            </p>
+        </form>
+    </div>
 </nav>
 <center>
     {% block center %}
@@ -58,18 +69,32 @@
 <footer>
     < group-33 >
     <p>
-        <a href="https://github.com/LiaoWC/db_33_boardgame" target="_blank">
-            <img src="{{ url_for('static', filename='IMG/github.png') }}" class="footer_icon" alt="Github">
-        </a>
-        <a href="https://www.notion.so/4-28-33-Proposal-98066f91128548558ba1c60a31788b5a" target="_blank">
-            <img src="{{ url_for('static', filename='IMG/notion.png') }}" class="footer_icon" alt="Notion">
-        </a>
-        <a href="/source">
-            <img src="{{ url_for('static', filename='IMG/icons8-love-100.png') }}" class="footer_icon"
-                 alt="Source and Credit">
-        </a>
+        <a href="https://github.com/LiaoWC/db_33_boardgame" target="_blank"><img
+                src="{{ url_for('static', filename='IMG/github.png') }}" class="footer_icon" alt="Github"></a>
+        <a href="https://www.notion.so/4-28-33-Proposal-98066f91128548558ba1c60a31788b5a" target="_blank"><img
+                src="{{ url_for('static', filename='IMG/notion.png') }}" class="footer_icon" alt="Notion"></a>
+        <a href="/source"><img src="{{ url_for('static', filename='IMG/icons8-love-100.png') }}" class="footer_icon"
+                               alt="Source and Credit"></a>
     </p>
 </footer>
+<!--loader-->
+<div class="loader_container">
+    <div class="loader" id="loader"></div>
+</div>
+<!------>
+<script type="text/javascript" src="{{ url_for('static', filename='JS/js.js') }}"></script>
+<!-- reference: https://stackoverflow.com/questions/1853662/how-to-show-page-loading-div-until-the-page-has-finished-loading -->
+<script>
+    function remove_loader(){
+        /*$('.loader_container').hide();*/
+        $(".loader_container").fadeOut(300,function(){
+            $(".loader_container").hide();
+        });
+    }
+    $(window).on("load",function() {
+        setTimeout(remove_loader,1000);
+    });
+</script>
 </body>
 </html>
 

@@ -19,6 +19,10 @@ th {
     text-align: center;
 }
 
+th.empty_th {
+    display: none;
+}
+
 .td_row:hover {
     cursor: pointer;
     background-color: #F2D1CE;
@@ -72,3 +76,27 @@ th {
 /* td {
     overflow: auto;
 } */
+
+@media screen and (max-width:800px) {
+    #category_row,
+    #players_row,
+    #playtime_row,
+    #rating_round_row,
+    #num_of_rating_row,
+    #number_of_rating_row,
+    #age_row,
+    #Players_th,
+    #Playtime_th,
+    #year_published_row,
+    .filter_search_name_th,
+    .Year_Published_th,
+    .Category_th,
+    .Players_th,
+    .Playtime_th,
+    .Age_th,
+    .Rating_th,
+    .number_of_rating_th,
+    .Number_of_rating_th {
+        display: none;
+    }
+}
