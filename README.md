@@ -1,3 +1,2 @@
-大家可以在這裡打字！
 # 備註
-- "formal_project"是真正的做web專案資料夾，原來的檔案是參考用的
+- "formal_project"是web專案所在資料夾
