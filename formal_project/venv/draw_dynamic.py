@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import re
-
+import matplotlib
+matplotlib.use('Agg')
 
 def draw_dynamic(draw_list, num):
     draw_list.sort()
