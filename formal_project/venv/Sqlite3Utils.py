@@ -82,9 +82,10 @@ class Sqlite3Utils:
             sql = sql + " and board_category not like \'%Card Game%\' and board_category not like \'%Wargame%\' and board_category not like \'%Children\'\'s Game%\' and board_category not like \'%Dice%\' and board_category not like \'%Fantasy%\' and board_category not like \'%Abstract Strategy%\' and board_category not like \'%Miniatures%\' and board_category not like \'%Educational%\' and board_category not like \'%Party Game%\' and board_category not like \'%Science Fiction%\' and board_category not like \'%Fighting%\' and board_category not like \'%Trivia%\' and board_category not like \'%Economic%\' and board_category not like \'%Movies / TV / Radio theme%\' and board_category not like \'%Print & Play%\'"
         elif game_category == 'All':
             sql = sql
+        elif game_category == "Children's Game":
+            sql = sql + " and board_category like \'%" + "Children''s Game" + "%\' ";
         else:
-            sql = sql + " and board_category like \'%" + (
-                "Children''s Game" if game_category == "Children's Game" else game_category) + "%\' "
+            sql = sql + " and board_category like \'%" + game_category + "%\' "
         # 按rating, rating_player排序
         sql = sql + " order by case when ur.rating is NULL then (info.rating*info.rating_player+550)/(info.rating_player+100) else (info.rating*info.rating_player+ur.rating+550)/(info.rating_player+ur.rating_player+100) end desc, case when ur.rating is null then info.rating_player+100 else(info.rating_player+ur.rating_player+100) end desc "
         # 數量限制
