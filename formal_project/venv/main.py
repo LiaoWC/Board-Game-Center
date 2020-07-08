@@ -81,7 +81,7 @@ def game_info(bg_name):
     db = Sqlite3Utils.Sqlite3Utils(dbFileName)
     resList = db.game_info(bg_name)
     newList = other_functions.name_search_list(resList)
-    print("resList: " ,resList)
+    # print("resList: " ,resList)
     info = newList[0]
     return render_template('game_info.html', bg_name=bg_name, bg_info=info)
 
