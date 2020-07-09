@@ -64,15 +64,15 @@ class Sqlite3Utils:
     def filter_search(self, num_people, game_time, game_category):
         sql = "select info.name, info.board_category, info.min_player, info.max_player, info.min_playtime, info.max_playtime, case when ur.rating is NULL then info.rating else ((info.rating*info.rating_player)+(ur.rating))/(info.rating_player+ur.rating_player)end, case when ur.rating is NULL then info.rating_player else info.rating_player+ur.rating_player end from info left join (select game_id as id, sum(rating) as rating, count(rating) as rating_player from user_rating group by game_id)as ur on info.id=ur.id where "
         # players
-        sql = sql + "min_player <= " + str(num_people) + " and " + "max_player >= " + str(num_people) + " "
+        sql = sql + "info.min_player <= " + str(num_people) + " and " + "info.max_player >= " + str(num_people) + " "
         # game_time
         # if 'All':no play_time restriction
         if game_time == '<30 minutes':
             sql = sql + " and max_playtime<=30 "
         elif game_time == '30~60 minutes':
-            sql = sql + " and (max_playtime<60 and max_playtime>=30) or (min_playtime<60 and min_playtime>=30) or (max_playtime>=60 and min_playtime<=30) "
+            sql = sql + " and ((max_playtime<60 and max_playtime>=30) or (min_playtime<60 and min_playtime>=30) or (max_playtime>=60 and min_playtime<=30)) "
         elif game_time == '1~2 hours':
-            sql = sql + " and (max_playtime<120 and max_playtime>=60) or (min_playtime<120 and min_playtime>=60) or (max_playtime>=120 and min_playtime<=60) "
+            sql = sql + " and ((max_playtime<120 and max_playtime>=60) or (min_playtime<120 and min_playtime>=60) or (max_playtime>=120 and min_playtime<=60)) "
         elif game_time == '>2 hours':
             sql = sql + " and min_playtime>=120 "
         #不能有Expansion
