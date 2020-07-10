@@ -4,6 +4,9 @@ ifDebugMode = True
 # flask使用
 from flask import Flask, render_template, request, redirect, session
 
+# http的exception用
+from werkzeug.exceptions import HTTPException
+
 # 亂數使用
 import random
 
@@ -66,20 +69,25 @@ def search_name():
 
 
 # 直接搜尋名字
-@app.route('/directly_search_name/<string:bg_name>')
+@app.route('/directly_search_name/<path:bg_name>')
 def directly_search_name(bg_name):
     # name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, rating, rating_player
     db = Sqlite3Utils.Sqlite3Utils(dbFileName)
     resList = db.name_search(bg_name)
     # print(resList)
+    print(bg_name)
     newList = other_functions.name_search_list(resList)
     return render_template('search_name_result.html', bgList=newList)
 
 
-@app.route('/game_info/<string:bg_name>')
+@app.route('/game_info/<path:bg_name>')
 def game_info(bg_name):
     db = Sqlite3Utils.Sqlite3Utils(dbFileName)
     resList = db.game_info(bg_name)
+    print("rres:", resList)
+    if len(resList) == 0:
+        error_str = "This game \"" + bg_name + "\" does not exist in the database."
+        return render_template('exception/exception.html', e=error_str, status404=0)
     newList = other_functions.name_search_list(resList)
     # print("resList: " ,resList)
     info = newList[0]
@@ -105,30 +113,13 @@ def circulation_to_publishedyear():
 def category_to_rating():
     db = Sqlite3Utils.Sqlite3Utils(dbFileName)
     resList = db.category_to_rating_query()
-    # For testing
-    # category = [("Abstract Strategy", 9.8), ("Card Game", 9), ("Children's Game", 6.7), ("Dice", 8.1),
-    #             ("Economic", 9.2),
-    #             ("Educational", 8.8), ("Fantasy", 9.0), ("Fighting", 7.6), ("Miniatures", 3.6),
-    #             ("Movies/TV/Radio theme", 9.5), ("Party Game", 8.3), ("Print & Play", 6.9),
-    #             ("Science Fiction", 7.6), ("Trivia", 7.8), ("Wargame", 8.5)]
     rand_num = random.randint(0, 9999999999999999999999999)
-    # draw_dynamic(category, rand_num)
     draw_dynamic(resList, rand_num)
-    # if 'flip' in session:
-    #     session['flip'] = rand_num
-    #     # if session['flip'] == rand_num:
-    #     #     session['flip'] = 1  # reading and updating session data
-    #     # else:
-    #     #     session['flip'] = 0
-    # else:
-    #     # session['flip'] = 0  # setting session data
-    #     session['flip'] = rand_num
-    # # print(session['flip'])
     return render_template("statistics/category_to_rating.html", flip=rand_num)
 
 
 # 按了評分星星後
-@app.route('/rate/<bgname>/<rating>')
+@app.route('/rate/<path:bgname>/<rating>')
 def rate(bgname, rating):
     bgname = str(bgname)
     rating = int(rating)
@@ -136,10 +127,11 @@ def rate(bgname, rating):
     sqlA = "SELECT game_id FROM info,user_rating WHERE info.id = user_rating.game_id and info.name = \"" + bgname + "\";"
     id_list = (db.db_exec(sqlA, 1))
     if len(id_list) == 0:
-        return "This game \"" + bgname + "\" does not exist in the database."
+        error_str = "This game \"" + bgname + "\" does not exist in the database."
+        return render_template('exception/exception.html', e=error_str, status404=0)
     game_id = id_list[0][0]
     print("game_id: ", game_id)
-    sqlB = "INSERT INTO user_rating(game_id,rating) values(" + str(game_id) +","+ str(rating) + ")"
+    sqlB = "INSERT INTO user_rating(game_id,rating) values(" + str(game_id) + "," + str(rating) + ")"
     if not db.db_exec(sqlB, 0):
         return "Rate unsuccessfully."
     db.close()
@@ -147,9 +139,15 @@ def rate(bgname, rating):
     return redirect(redirect_link)
 
 
-@app.route('/test')
-def test():
-    return render_template('test.html')
+@app.errorhandler(404)
+def exception_handling_404(e):
+    return render_template('exception/exception.html', e=e, status404=1)
+
+
+@app.errorhandler(HTTPException)
+def exception_handling_http_general(e):
+    return render_template('exception/exception.html', e=e, status404=0)
+
 
 # run(這一段要放在程式最後面，不然可能頁面出不來)
 if __name__ == '__main__':

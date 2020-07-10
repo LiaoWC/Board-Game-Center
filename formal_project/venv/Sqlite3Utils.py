@@ -1,9 +1,19 @@
+def solve_apostrophe(old_str):
+    newStr = ""
+    for i in old_str:
+        if i == "'":
+            newStr = newStr + i + i
+        else:
+            newStr = newStr + i
+    return newStr
+
+
 class Sqlite3Utils:
     def __init__(self, dbName):
         import sqlite3
         self.connection = sqlite3.connect(dbName)
 
-    def db_exec(self, sql, operation_type=0):  # 0為返回查詢列表，1為返回邏輯值的操作
+    def db_exec(self, sql, operation_type=0):  # 1為返回查詢列表，0為返回邏輯值的操作
         try:
             result = self.connection.execute(sql)
             if operation_type == 0:
@@ -22,7 +32,7 @@ class Sqlite3Utils:
         resList = self.db_exec(sql, 1)
         self.close()
         return resList
-        
+
     def home_search(self):
         sql = "select name, max_player, min_player, max_playtime, min_playtime from info left join (select game_id as id, sum(rating) as rating, count(rating) as rating_player from user_rating group by game_id)as ur on info.id=ur.id where info.rating<=10 and name not like \'%Expansion%\' and board_category not like \'%Expansion%\' order by case when ur.rating is NULL then (info.rating*info.rating_player+550)/(info.rating_player+100) else (info.rating*info.rating_player+ur.rating+550)/(info.rating_player+ur.rating_player+100) end desc, case when ur.rating is null then info.rating_player+100 else (info.rating_player+ur.rating_player+100) end desc limit 5;"
         resList = self.db_exec(sql, 1)
@@ -56,12 +66,17 @@ class Sqlite3Utils:
         sql = sql + " limit " + str(limit) + " "
         # 分號
         sql = sql + ";"
-        print(sql)
+        # print(sql)
         resList = self.db_exec(sql, 1)
         self.close()
         return resList
-        
+
     def filter_search(self, num_people, game_time, game_category):
+        # prevent crashing from a single quote
+        num_people = solve_apostrophe(num_people)
+        game_time = solve_apostrophe(game_time)
+        game_category = solve_apostrophe(game_category)
+        #
         sql = "select info.name, info.board_category, info.min_player, info.max_player, info.min_playtime, info.max_playtime, case when ur.rating is NULL then info.rating else ((info.rating*info.rating_player)+(ur.rating))/(info.rating_player+ur.rating_player)end, case when ur.rating is NULL then info.rating_player else info.rating_player+ur.rating_player end from info left join (select game_id as id, sum(rating) as rating, count(rating) as rating_player from user_rating group by game_id)as ur on info.id=ur.id where "
         # players
         sql = sql + "info.min_player <= " + str(num_people) + " and " + "info.max_player >= " + str(num_people) + " "
@@ -75,7 +90,7 @@ class Sqlite3Utils:
             sql = sql + " and ((max_playtime<120 and max_playtime>=60) or (min_playtime<120 and min_playtime>=60) or (max_playtime>=120 and min_playtime<=60)) "
         elif game_time == '>2 hours':
             sql = sql + " and min_playtime>=120 "
-        #不能有Expansion
+        # 不能有Expansion
         sql = sql + " and info.rating<=10 and name not like \'%Expansion%\' and board_category not like \'%Expansion%\' "
         # game_category
         if game_category == 'Others':
@@ -109,23 +124,29 @@ class Sqlite3Utils:
         newList[9] = newList[9] + resListB[9]
         self.close()
         return newList
-        
+
     def name_search(self, bg_name):
+        # prevent crashing from a single quote
+        bg_name = solve_apostrophe(bg_name)
+        #
         sql = "select name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, case when ur.rating is NULL then info.rating else ((info.rating*info.rating_player)+(ur.rating))/(info.rating_player+ur.rating_player)end, case when ur.rating is NULL then info.rating_player else info.rating_player+ur.rating_player end from info left join (select game_id as id, sum(rating) as rating, count(rating) as rating_player from user_rating group by game_id)as ur on info.id=ur.id "
         sql = sql + "where name like \'%" + bg_name + "%\' "
         sql = sql + "and info.rating<=10 and name not like \'%Expansion%\' and board_category not like \'%Expansion%\' "
-        #sql = sql + "limit 10"
+        # sql = sql + "limit 10"
         sql = sql + ";"
         resList = self.db_exec(sql, 1)
-        print(resList)
+        # print(resList)
         self.close()
         return resList
-        
+
     def game_info(self, bg_name):
+        # prevent crashing from a single quote
+        bg_name = solve_apostrophe(bg_name)
+        #
         sql = "select name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, case when ur.rating is NULL then info.rating else ((info.rating*info.rating_player)+(ur.rating))/(info.rating_player+ur.rating_player)end, case when ur.rating is NULL then info.rating_player else info.rating_player+ur.rating_player end from info left join (select game_id as id, sum(rating) as rating, count(rating) as rating_player from user_rating group by game_id)as ur on info.id=ur.id "
         sql = sql + "where name = \'" + bg_name + "\' "
         sql = sql + "and info.rating<=10 and name not like \'%Expansion%\' and board_category not like \'%Expansion%\' "
-        #sql = sql + "limit 10"
+        # sql = sql + "limit 10"
         sql = sql + ";"
         resList = self.db_exec(sql, 1)
         print(resList)
@@ -133,28 +154,17 @@ class Sqlite3Utils:
         return resList
 
     def category_to_rating_query(self):
-        f = open("category_to_rating_sql.txt",'r')
+        f = open("category_to_rating_sql.txt", 'r')
         sql = ''
         for row in f:
             sql += row
         f.close()
-        resList = self.db_exec(sql,1)
+        resList = self.db_exec(sql, 1)
         self.close()
         return resList
-
-    # def solve_apostrophe(self, string):
-    #     newStr = ""
-    #     for i in string:
-    #         if i == "'":
-    #             string = string + i + i
-    #         else:
-    #             string = string + i
-    #     return newStr
 
 # dbName = 'test.db'
 # db = Sqlite3Utils(dbName)
 # sql = 'select * from test'
 # resList = db.db_exec(sql, 1)
 # print(resList)
-
-
