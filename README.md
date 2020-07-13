@@ -1,24 +1,20 @@
-# 備註
-- "formal_project"是web專案所在資料夾
+# README
 
-[畫好的graphviz可在這個網站轉成html直接貼回markdown](https://liaowc.github.io/graphviz_code_transformer/graphviz_code_transformer.html)
-
-
-(下面還在施工)
-
-
-<img src='https://g.gravizo.com/svg?%20%20%20%20digraph%20try%20{%20%20%20a->b;%20%20%20b->c;%20%20%20a->d;%20%20%20d->b;%20%20%20})'/>
-<details>
-    <summary></summary> 
-    
-    ```graphviz
-    digraph try {
-    a->b;
-    b->c;
-    a->d;
-    d->b;
-    })
+### 如何運行網頁？
+1. Change your work directory to venv.
+    ```shell
+    cd venv
     ```
-</details>
-
-<img src='https://g.gravizo.com/svg?%20%20%20%20digraph%20try%20{%20%20%20%20%20a->b;%20%20%20%20%20b->c;%20%20%20%20%20a->d;%20%20%20%20%20d->b;%20%20%20%20%20})'/>'
+2. Activate the python virtual environment.
+    ```shell
+    source bin/activate
+    ```
+3. Use python3 to run the main.py.
+    ```shell
+    sudo python3 main.py
+    ```
+4. Open your web-browser(Chrome is recommended.) and go to `0.0.0.0`
+### 備註：
+- 本程式於Ubuntu18.04上撰寫，若其它作業系統在運行上有問題可以試試使用Ubuntu18.04。
+- 可以通過修改main.py的`ifDebegMode`(True or False)，來開關Flask的debug模式。
+- 目前設成網頁會跑在localhost的port 80，所以需要sudo的權限。可以在main.py的`app.run`那邊修改運行的網址與port。
