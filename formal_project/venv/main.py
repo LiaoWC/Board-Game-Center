@@ -118,10 +118,24 @@ def category_to_rating():
     return render_template("statistics/category_to_rating.html", flip=rand_num)
 
 
+def if_string_is_int(str_):
+    try:
+        str_int = int(str_)
+        if 10 >= str_int >= 1:
+            return True
+        else:
+            return False
+    except:
+        return False
+
+
 # 按了評分星星後
 @app.route('/rate/<path:bgname>/<rating>')
 def rate(bgname, rating):
     bgname = str(bgname)
+    if not if_string_is_int(rating):
+        return render_template('exception/exception.html',
+                               e="The rating-score must be in integer and range from 1 to 10.", status404=0)
     rating = int(rating)
     db = Sqlite3Utils.Sqlite3Utils(dbFileName)
     sqlA = "SELECT game_id FROM info,user_rating WHERE info.id = user_rating.game_id and info.name = \"" + bgname + "\";"
