@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 def solve_apostrophe(old_str):
     newStr = ""
     for i in old_str:

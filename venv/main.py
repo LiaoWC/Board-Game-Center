@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 # 正式使用時，記得把debug模式改成False
 ifDebugMode = True
 

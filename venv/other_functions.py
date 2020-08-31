@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 # 處理首頁自動出現top-rating桌遊要用的list
 def home_top_rating_list(old_list):
     newList = []
