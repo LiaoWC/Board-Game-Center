@@ -23,13 +23,13 @@
     ```
     deactivate
     ```
-- 套件安裝
+- 套件安裝<br>
     進入虛擬環境後，在執行前還需要注意一件事，如果你沒有裝過flask及matplotlib，則會報錯。
     ```
     pip install flask
     pip install matplotlib
     ```
-- 超級使用者權限
+- 超級使用者權限<br>
     由於本程式使用port 80，需要超級使用者權限，因此運行需要使用
     ```
     sudo
