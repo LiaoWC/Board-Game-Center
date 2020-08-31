@@ -47,3 +47,4 @@
 - 本程式於Ubuntu上撰寫，若其它作業系統在運行上有問題可以試試使用Ubuntu18.04或Ubuntu20.04。
 - 可以通過修改main.py的`ifDebegMode`(True or False)，來開關Flask的debug模式。
 - 網頁跑在localhost的port 80，所以需要sudo的權限。可以通過修改main.py的`app.run`來改變運行的port。
+- 原始資料集來源：[Kaggle的board games dataset](https://www.kaggle.com/gabrio/board-games-dataset)
