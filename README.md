@@ -1,6 +1,8 @@
 # README
 
-可以使用虛擬環境。
+## 如何運行網頁？
+
+建議使用虛擬環境，較易管理。以下操作皆在有虛擬環境中測試的。
 - Debian/Ubuntu電腦需要先安裝：(可能需要加sudo)
     ```
     apt-get install python3-venv
@@ -17,10 +19,30 @@
     ```
     (你的虛擬環境名稱)
     ```
-- 離開虛擬環境：
+- 註：如果要離開虛擬環境則在terminal輸入：
     ```
     deactivate
     ```
+- 套件安裝
+    進入虛擬環境後，在執行前還需要注意一件事，如果你沒有裝過flask及matplotlib，則會報錯。
+    ```
+    pip install flask
+    pip install matplotlib
+    ```
+- 超級使用者權限
+    由於本程式使用port 80，需要超級使用者權限，因此運行需要使用
+    ```
+    sudo
+    ```
+- 進入code_and_data資料夾，執行下列即可開始運行程式
+    ```
+    sudo python3 main.py
+    ```
+- 到你的瀏覽器網址輸入：
+    ```
+    127.0.0.1
+    ```
+
 ### 如何運行網頁？
 1. Change your work directory to venv.
     ```shell
