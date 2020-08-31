@@ -1,5 +1,7 @@
 # README
 
+This is an application which can recommend you what board-games to play according to your current situation. Besides, it can do some statistics analysis.
+
 ## 如何運行網頁？
 
 建議使用虛擬環境，較易管理。以下操作皆在有虛擬環境中測試的。
