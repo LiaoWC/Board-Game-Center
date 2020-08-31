@@ -1,5 +1,26 @@
 # README
 
+可以使用虛擬環境。
+- Debian/Ubuntu電腦需要先安裝：(可能需要加sudo)
+    ```
+    apt-get install python3-venv
+    ```
+- 建立虛擬環境：
+    ```
+    python3 -m venv {你想要的名字}
+    ```
+- 進入虛擬環境：
+    ```
+    source {你的虛擬環境的bin/activate}
+    ```
+- 成功後，會看到terminal檔案路徑前面出現
+    ```
+    (你的虛擬環境名稱)
+    ```
+- 離開虛擬環境：
+    ```
+    deactivate
+    ```
 ### 如何運行網頁？
 1. Change your work directory to venv.
     ```shell
