@@ -19,7 +19,7 @@ $(".td_row").css("cursor: pointer");
 //$(document).ready(function(){
 //    $("#rating_round_row") = round_two_digit($("#rating_round_row").text().toString());
 //})
-$(document.getElementById("menu_btn").addEventListener('click', function(e) {
+$(document.getElementById("menu_btn").addEventListener('click', function (e) {
     $(this).toggleClass('active');
     $('#menu_ul').toggleClass('active');
     $("#searchNameFrame_inNav").toggleClass("active");
@@ -40,3 +40,20 @@ $(document.getElementById("menu_btn").addEventListener('click', function(e) {
 //     })
 //     $(this).toggleClass('current-active');
 //})
+
+
+////////////////////
+
+// Loader
+
+// reference: https://stackoverflow.com/questions/1853662/how-to-show-page-loading-div-until-the-page-has-finished-loading
+function remove_loader() {
+    /*$('.loader_container').hide();*/
+    $(".loader_container").fadeOut(300, function () {
+        $(".loader_container").hide();
+    });
+
+}
+$(window).on("load", function () {
+    setTimeout(remove_loader, 500);
+});

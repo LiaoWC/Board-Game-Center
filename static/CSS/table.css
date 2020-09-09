@@ -67,6 +67,18 @@ th.empty_th {
     margin-bottom: 20px;
     max-width: 670px;
     overflow-wrap: break-word;
+
+        position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+table#myTable td {
+    text-align: center;
+}
+
+#center_container > h1, #center_container >h3{
+    text-align: center;
 }
 
 

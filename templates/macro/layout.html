@@ -1,0 +1,9 @@
+{% macro directly_search_name_form(label_id,description,text_input_id,btn_input_id) %}
+        <form action="/search_name" method="post">
+            <p>
+                <label class="searchName_label_input" id="{{ label_id }}">{{ description }}</label>
+                <input type="text" id="{{ text_input_id }}" name="searchName" class="text_field" required="required"/>
+                <input class="btn" type="submit" id="{{ btn_input_id }}" name="btn_searchName" value="Go"/>
+            </p>
+        </form>
+{% endmacro %}

@@ -1,70 +1,89 @@
+<!--------------------------------------------
+This is the template of all pages.
+It is extended to other html templates.
+Rendered by Jinja2 template engine.
+
+P.S.
+"{# #}" means it's a comment in Jinja2 template engine.
+--------------------------------------------->
+{% from "macro/layout.html" import directly_search_name_form %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Board-Game-Center: Your Intelligent Board-Game Assistant!</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    {% block head %}
-    <!--##################################################################################################-->
-    <!--##################################################################################################-->
-    {% endblock %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/all_pages.css') }}"/>
+
+    <!-- favicon -->
     <link rel="shortcut icon" type="image/svg" href="{{ url_for('static', filename='IMG/favicon.svg') }}">
+    <!---->
+
+    <!-- This block is for adding additional head options exclusive of stylesheets and scripts. -->
+    {% block head %}{% endblock %}
+    <!---->
+
+    <!-- stylesheets for all pages -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/all_pages.css') }}"/>
+    <!---->
+
+    <!-- This block is for adding additional stylesheets. -->
+    {% block stylesheet %}{% endblock %}
+    <!---->
+
 </head>
 <body>
 
 <!--header-->
 <header>
+
+    <!-- Website Name -->
     <div id="header_text">
         <h1><a id="home_link_text" href="/home">Board-Game-Center</a></h1>
     </div>
-    <!--p>Your intelligent board game assistant!</p-->
+    <!---->
+
+    <!-- Right Top Corner Name Search Area -->
     <div class="searchName_frame" id="searchName_frame_inUpperRight">
-        <form action="/search_name" method="post">
-            <p>
-                <label class="searchName_label_input">Search games directly?</label>
-                <input type="text" id="searchName" name="searchName" class="text_field" required="required"/>
-                <input class="btn" type="submit" id="btn_searchName" name="btn_searchName" value="Go"/>
-            </p>
-        </form>
+        {{ directly_search_name_form('','Search games directly?','searchName','btn_searchName') }}
     </div>
+    <!---->
+
 </header>
+
 <!--nav-->
 <nav>
+    <!-- Navbar's menu btn. It'll appear if the viewport width is in a specific range. -->
     <a id="menu_btn" class="toggle-nav" href="#">&#9776;</a>
-    <ul id="menu_ul" class="active">
-        <li><a href="/" class="current-active">Home</a></li>
-        <!--        <li><a href="blog.html">Blog</a></li>-->
-        <li><a href="http://www.nctu.edu.tw" target="_blank">School</a></li>
-        <li><a href="https://www.cwb.gov.tw" target="_blank">Weather</a></li>
-        <li><a href="/statistics">Statistics</a></li>
-        <li><a href="/search_filters">Find board-games suitable for you!</a></li>
-    </ul>
-    <div class="searchName_frame active" id="searchNameFrame_inNav">
-        <form action="/search_name" method="post">
-            <p>
-                <label class="searchName_label_input" id="searchName_label_input_inNav">Search games:</label>
-                <input type="text" id="searchName_inNav" name="searchName" class="text_field" required="required"/>
-                <input class="btn" type="submit" id="btn_searchName_inNav" name="btn_searchName" value="Go"/>
-            </p>
-        </form>
-    </div>
-</nav>
-<center>
-    {% block center %}
-    <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-    <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-    {% endblock %}
-</center>
+    <!---->
 
-<!--article-->
-<!--arti></arti>cle ><p>內容區</p>
-<section>< section ><p>網頁內容的區塊-1</p></section>
-</article-->
-<!--aside>
-  < aside ><p>側邊欄位可放置額外資訊、相關連結等</p>
-</aside-->
+    <!-- Navbar links -->
+    <ul id="menu_ul" class="active">
+        {% for href, name in [
+        ['/','Home'],
+        ['/statistics','Statistics'],
+        ['/search_filters','Find board-games suitable for you!']
+        ] %}
+            <li><a href="{{ href }}">{{ name }}</a></li>
+        {% endfor %}
+    </ul>
+    <!---->
+
+
+    <!-- Name Search Area in Navbar -->
+    <div class="searchName_frame active" id="searchNameFrame_inNav">
+        {{ directly_search_name_form("searchName_label_input_inNav","Search games:","searchName_inNav","btn_searchName_inNav") }}
+    </div>
+    <!---->
+
+</nav>
+
+<section id="center">
+    <!-- Arrange center area -->
+    {% block center %}{% endblock %}
+    <!---->
+</section>
+
 <!--footer-->
 <footer>
     < group-33 >
@@ -81,20 +100,22 @@
 <div class="loader_container">
     <div class="loader" id="loader"></div>
 </div>
-<!------>
+
+<!--------- Javascript ---------->
+
+<!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!---->
+
+<!-- the script of all pages -->
 <script type="text/javascript" src="{{ url_for('static', filename='JS/js.js') }}"></script>
-<!-- reference: https://stackoverflow.com/questions/1853662/how-to-show-page-loading-div-until-the-page-has-finished-loading -->
-<script>
-    function remove_loader(){
-        /*$('.loader_container').hide();*/
-        $(".loader_container").fadeOut(300,function(){
-            $(".loader_container").hide();
-        });
-    }
-    $(window).on("load",function() {
-        setTimeout(remove_loader,1000);
-    });
-</script>
+<!---->
+
+<!-- This block is for additional scripts -->
+{% block script %}{% endblock %}
+<!---->
+
+<!------------------------------------>
 </body>
 </html>
 

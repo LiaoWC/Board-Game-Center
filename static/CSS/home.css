@@ -18,12 +18,13 @@
     opacity: 0.92;
 }
 
-center {
-    /* display: flex; */
-    display: block;
-    justify-content: center;
-    align-items: center;
+section#center {
+     /*display: flex;*/
+    /*display: block;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
     height: 100%;
+    position: relative;
 }
 
 #center_container {
@@ -35,6 +36,12 @@ center {
     opacity: 0.95;
     padding-bottom: 150px;
     /* padding-top: 30px; */
+
+    /* To align center */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100vh;
 }
 
 #center_container h1 {
