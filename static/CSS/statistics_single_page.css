@@ -1,0 +1,9 @@
+.statistics_picture {
+    max-width: 100%;
+}
+
+.pic_frame {
+    max-width: 80%;
+    height: 100%;
+    margin: 0 auto;
+}

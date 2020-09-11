@@ -68,9 +68,10 @@ th.empty_th {
     max-width: 670px;
     overflow-wrap: break-word;
 
-        position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    display: inline;
+    /*    position: absolute;*/
+    /*left: 50%;*/
+    /*transform: translateX(-50%);*/
 }
 
 table#myTable td {

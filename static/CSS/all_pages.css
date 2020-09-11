@@ -162,7 +162,7 @@ nav ul {
 nav li {
     float: left;
     list-style-type: none;
-    margin: 0px 30px 0 px 0px;
+    margin: 0px 30px 0px 0px;
     font-size: 1.1em;
 }
 
@@ -286,18 +286,19 @@ article {
     }
 }
 
-@media screen and (max-width:800px) {
+@media screen and (max-width: 800px) {
     .loader {
         width: 250px;
         height: 250px;
     }
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
     header {
         min-height: 70px;
         height: 78px;
     }
+
     nav {
         background-color: #A67951;
         color: #fff;
@@ -307,6 +308,7 @@ article {
         /* margin-bottom: -10px; */
         /* width: 100%; */
     }
+
     .toggle-nav {
         display: block;
         /* position: absolute; */
@@ -319,6 +321,7 @@ article {
         /* height: 45px; */
         /* width: 200px; */
     }
+
     nav ul {
         /* margin: 0; */
         z-index: 1;
@@ -338,6 +341,7 @@ article {
         /* display: flex; */
         /* flex-wrap: wrap; */
     }
+
     /* ul {
         display: block;
         float: none;
@@ -363,6 +367,7 @@ article {
         /* text-align: center; */
         /* margin: 10px 0px 10px 0px; */
     }
+
     nav a {
         color: white;
         /* display: inline-flex; */
@@ -374,41 +379,50 @@ article {
         /*padding: 0.5em 2em; */
         /* text-decoration: none; */
     }
+
     div#searchName_frame_inUpperRight {
         display: none;
     }
+
     nav ul.active {
         display: none;
     }
+
     nav div.searchName_frame#searchNameFrame_inNav {
         display: block;
         width: 80%;
         padding-left: 25px;
     }
+
     nav div.searchName_frame#searchNameFrame_inNav.active {
         display: none;
     }
+
     nav div.searchName_frame#searchNameFrame_inNav form {
         display: inline-block;
         position: relative;
         padding: 15px;
     }
+
     #searchNameFrame_inNav p {
         display: inline-block;
         margin: 0;
     }
+
     label#searchName_label_input_inNav.searchName_label_input {
         display: block;
         font-size: 1.1em;
         /* float: initial; */
         padding-bottom: 1px;
     }
+
     input#searchName_inNav.text_field {
         display: block;
         border-radius: 3px;
         float: left;
         height: 28px;
     }
+
     input#btn_searchName_inNav.btn {
         display: block;
         float: right;
@@ -430,47 +444,76 @@ article {
         float: center;
         /* margin: auto; */
     }
+
     .loader {
         width: 200px;
         height: 200px;
     }
 }
 
-@media screen and (max-width:514px) {
+@media screen and (max-width: 514px) {
     div#header_text header.h1 {
         font-size: 1.5em;
     }
+
     #header_text h1 {
         display: block;
     }
+
     #searchName_frame {
         display: none;
     }
+
     body {
         height: 100%;
     }
+
     center {
         height: 100%;
     }
+
     #center_container {
         width: 100%;
         height: 100%;
     }
+
     #centerIMG {
         padding-top: 30px;
     }
+
     div#sub_frame h1 {
         font-size: 1.5em;
     }
+
     .loader {
         width: 150px;
         height: 150px;
     }
 }
 
-@media screen and (max-width:460px) {
+@media screen and (max-width: 460px) {
     .loader {
         width: 120px;
         height: 120px;
     }
 }
+
+/******************************/
+/* center area (align-center) */
+.center_outer {
+    text-align: center;
+}
+
+.center_center {
+    display: inline-block;
+}
+
+/******************************/
+/* class: text-center */
+
+.text-center {
+    text-align: center;
+}
+
+/******************************/
+

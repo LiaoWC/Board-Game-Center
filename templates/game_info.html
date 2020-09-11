@@ -1,43 +1,114 @@
 {% extends "layout.html" %}
 
-{% block head %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/game_info.css') }}">
-<script type="text/javascript" src="{{url_for('static', filename='JS/rating_stars.js')}}"></script>
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/game_info.css') }}">
+{% endblock %}
+
+{% block script %}
+    <script>
+        // 顯示評分
+        $(document).ready(function () {
+            let rating = $("#rating").text();
+            rating = parseFloat(rating)
+            if (rating <= 0) {
+                $("#rating_stars").text("☆☆☆☆☆")
+            } else if (rating <= 2 && rating > 0) {
+                $("#rating_stars").text("★☆☆☆☆")
+            } else if (rating > 2 && rating <= 4) {
+                $("#rating_stars").text("★★☆☆☆")
+            } else if (rating > 4 && rating <= 6) {
+                $("#rating_stars").text("★★★☆☆")
+            } else if (rating > 6 && rating <= 8) {
+                $("#rating_stars").text("★★★★☆")
+            } else if (rating > 8) {
+                $("#rating_stars").text("★★★★★")
+            } else {
+                alert("There's something error.")
+            }
+        })
+
+        // 評分功能
+        var game_name = "";
+        $(document).ready(function get_game_name() {
+            game_name = $("div#info > h1").text()
+        })
+
+        // 評分 (1~10)
+        function rate(num) {
+            alert("Thank you for your rating!")
+            var ret_link = "/rate/" + game_name + "/" + String(num)
+            window.open(ret_link, "_self")
+        }
+
+        window.onload = function () {
+            $("#rate10").click(function () {
+                rate(10);
+            })
+            $("#rate9").click(function () {
+                rate(9);
+            })
+            $("#rate8").click(function () {
+                rate(8);
+            })
+            $("#rate7").click(function () {
+                rate(7);
+            })
+            $("#rate6").click(function () {
+                rate(6);
+            })
+            $("#rate5").click(function () {
+                rate(5);
+            })
+            $("#rate4").click(function () {
+                rate(4);
+            })
+            $("#rate3").click(function () {
+                rate(3);
+            })
+            $("#rate2").click(function () {
+                rate(2);
+            })
+            $("#rate1").click(function () {
+                rate(1);
+            })
+        }
+
+    </script>
 {% endblock %}
 
 {% block center %}
-<div id="info">
-    <h1 name="{{bg_name}}">{{bg_name}}</h1>
-    <div id="rating_stars" value="{{bg_info[6]}}"></div>
-    <div id="rating_detail">
-        Rating Score:
-        {% set rating_float = bg_info[6] | float %}
-        <a id="rating">{{ rating_float | round(2,'common')}}</a>
+    <div id="info">
+        <h1>{{ bg_name }}</h1>
+        <div id="rating_stars"></div>
+        <div id="rating_detail">
+            Rating Score:
+            {% set rating_float = bg_info[6] | float %}
+            <a id="rating">{{ rating_float | round(2,'common') }}</a>
+        </div>
+        <div id="info_detail">
+            <p>
+                <b>Number of Rating:</b> {{ bg_info[7] }}<br/>
+                <b>Year Published:</b> {{ bg_info[1] }}<br/>
+                <b>Category:</b> {{ bg_info[2] }}<br/>
+                <b>Players:</b> {{ bg_info[3] }}<br/>
+                <b>Playtime:</b> {{ bg_info[4] }}<br/>
+                <b>Minimum Age:</b> {{ bg_info[5] }}<br/>
+            </p>
+        </div>
     </div>
-    <div id="info_detail">
-        <p>
-            <b>Number of Rating:</b> {{bg_info[7]}}<br/>
-            <b>Year Published:</b> {{bg_info[1]}}<br/>
-            <b>Category:</b> {{bg_info[2]}}<br/>
-            <b>Players:</b> {{bg_info[3]}}<br/>
-            <b>Playtime:</b> {{bg_info[4]}}<br/>
-            <b>Minimum Age:</b> {{bg_info[5]}}<br/>
-        </p>
+    <div id="rate">
+        <h1>Rate for this game!</h1>
+        <div class="rating_number">
+            <span id="rate10">10</span>
+            <span id="rate9">9</span>
+            <span id="rate8">8</span>
+            <span id="rate7">7</span>
+            <span id="rate6">6</span>
+            <span id="rate5">5</span>
+            <span id="rate4">4</span>
+            <span id="rate3">3</span>
+            <span id="rate2">2</span>
+            <span id="rate1">1</span>
+        </div>
     </div>
-</div>
-<div id="rate">
-    <h1>Rate for this game!</h1>
-    <div class="rating_number">
-        <span id="rate10">10</span>
-        <span id="rate9">9</span>
-        <span id="rate8">8</span>
-        <span id="rate7">7</span>
-        <span id="rate6">6</span>
-        <span id="rate5">5</span>
-        <span id="rate4">4</span>
-        <span id="rate3">3</span>
-        <span id="rate2">2</span>
-        <span id="rate1">1</span>
-    </div>
-</div>
 {% endblock %}

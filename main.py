@@ -118,7 +118,8 @@ def category_to_rating():
     resList = db.category_to_rating_query()
     rand_num = random.randint(0, 9999999999999999999999999)
     draw_dynamic(resList, rand_num)
-    return render_template("statistics/category_to_rating.html", flip=rand_num)
+    category_to_rating_img_url = '/static/IMG/category_to_rating_pictures/category_to_rating_' + str(rand_num) + '.png'
+    return render_template("statistics/category_to_rating.html", img_url=category_to_rating_img_url)
 
 
 def if_string_is_int(str_):
@@ -156,6 +157,9 @@ def rate(bgname, rating):
     return redirect(redirect_link)
 
 
+########################################################################
+# Handle HTTP exceptions
+
 @app.errorhandler(404)
 def exception_handling_404(e):
     return render_template('exception/exception.html', e=e, status404=1)
@@ -165,6 +169,8 @@ def exception_handling_404(e):
 def exception_handling_http_general(e):
     return render_template('exception/exception.html', e=e, status404=0)
 
+
+########################################################################
 
 # run(這一段要放在程式最後面，不然可能頁面出不來)
 if __name__ == '__main__':

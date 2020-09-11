@@ -1,17 +1,20 @@
 {% extends "layout.html" %}
 
-{% block head %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/category_to_rating.css') }}"/>
-<script type="text/javascript" src="{{url_for('static', filename='JS/picture_processing.js')}}"></script>
+{% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/statistics_single_page.css') }}"/>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            let statistics_picture_target = $('.statistics_picture')
+            statistics_picture_target.attr("src", statistics_picture_target.attr("alt"));
+        })
+    </script>
 {% endblock %}
 
 {% block center %}
-<div class="pic_frame">
-    {% if session['flip'] == '0' %}
-
-    {% else %}
-
-    {% endif %}
-    <img class="category_to_rating_picture" src="#" name="{{flip}}">
-</div>
+    <div class="pic_frame">
+        <img class="statistics_picture" src="#" alt="{{ img_url }}">
+    </div>
 {% endblock %}

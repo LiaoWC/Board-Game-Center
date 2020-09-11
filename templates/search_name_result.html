@@ -17,9 +17,8 @@ Search Result
         <th class="Rating_th">Rating</th>
         <th class="Number_of_rating_th">Number of rating</th>
     </tr>
-    {% for bg in bgList: %}
+    {% for bg in bgList %}
     <tr class="td_row" onclick="document.location='/game_info/{{bg[0]}}'">
-        <!--            <td><a href="/game_info/{{bg[0]}}">{{bg[0]}}</a></td>-->
         <td id="name_row">{{bg[0]}}</td>
         <td id="year_published_row">{{bg[1]}}</td>
         <td id="category_row">{{bg[2]}}</td>

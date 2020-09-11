@@ -29,19 +29,17 @@ section#center {
 
 #center_container {
     display: block;
-    max-width: 900px;
-    width: 80%;
+    /*max-width: 900px;*/
+    /*width: 80%;*/
     /* height: 100%; */
     background-color: #F2DFA7;
     opacity: 0.95;
-    padding-bottom: 150px;
+    padding: 50px 5vh 150px 5vh;
     /* padding-top: 30px; */
 
     /* To align center */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 100vh;
+
+    text-align: center;
 }
 
 #center_container h1 {

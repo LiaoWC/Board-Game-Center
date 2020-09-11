@@ -6,7 +6,10 @@ Rendered by Jinja2 template engine.
 P.S.
 "{# #}" means it's a comment in Jinja2 template engine.
 --------------------------------------------->
+
+<!-- the use of macro -->
 {% from "macro/layout.html" import directly_search_name_form %}
+<!---->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +65,9 @@ P.S.
         {% for href, name in [
         ['/','Home'],
         ['/statistics','Statistics'],
-        ['/search_filters','Find board-games suitable for you!']
+        ['/search_filters','Find board-games suitable for you!'],
+        ['https://github.com/LiaoWC/db_33_boardgame','Github'],
+        ['/source','Source and Credit']
         ] %}
             <li><a href="{{ href }}">{{ name }}</a></li>
         {% endfor %}
@@ -78,24 +83,14 @@ P.S.
 
 </nav>
 
-<section id="center">
-    <!-- Arrange center area -->
-    {% block center %}{% endblock %}
-    <!---->
+<section class="center_outer">
+    <div id="center" class="center_center">
+        <!-- Arrange center area -->
+        {% block center %}{% endblock %}
+        <!---->
+    </div>
 </section>
 
-<!--footer-->
-<footer>
-    < group-33 >
-    <p>
-        <a href="https://github.com/LiaoWC/db_33_boardgame" target="_blank"><img
-                src="{{ url_for('static', filename='IMG/github.png') }}" class="footer_icon" alt="Github"></a>
-        <a href="https://www.notion.so/4-28-33-Proposal-98066f91128548558ba1c60a31788b5a" target="_blank"><img
-                src="{{ url_for('static', filename='IMG/notion.png') }}" class="footer_icon" alt="Notion"></a>
-        <a href="/source"><img src="{{ url_for('static', filename='IMG/icons8-love-100.png') }}" class="footer_icon"
-                               alt="Source and Credit"></a>
-    </p>
-</footer>
 <!--loader-->
 <div class="loader_container">
     <div class="loader" id="loader"></div>
