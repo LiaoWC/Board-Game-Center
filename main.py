@@ -38,12 +38,6 @@ def home():
     return render_template('home.html', bgList=newList)
 
 
-# 路由：感謝、引用
-@app.route('/source')
-def credit():
-    return render_template('source.html')
-
-
 # 路由：篩選搜尋選擇頁面
 @app.route('/search_filters')
 def search_filters():

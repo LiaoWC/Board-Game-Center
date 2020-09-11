@@ -56,6 +56,8 @@ P.S.
 
 <!--nav-->
 <nav>
+    <!-- RWD menu reference: https://weiupward.com/rwd%E7%9A%84menu%E9%81%B8%E5%96%AE%E7%B0%A1%E5%96%AE%E4%B8%8A%E6%89%8B/ -->
+
     <!-- Navbar's menu btn. It'll appear if the viewport width is in a specific range. -->
     <a id="menu_btn" class="toggle-nav" href="#">&#9776;</a>
     <!---->
@@ -66,8 +68,7 @@ P.S.
         ['/','Home'],
         ['/statistics','Statistics'],
         ['/search_filters','Find board-games suitable for you!'],
-        ['https://github.com/LiaoWC/db_33_boardgame','Github'],
-        ['/source','Source and Credit']
+        ['https://github.com/LiaoWC/db_33_boardgame','Github']
         ] %}
             <li><a href="{{ href }}">{{ name }}</a></li>
         {% endfor %}
@@ -92,6 +93,7 @@ P.S.
 </section>
 
 <!--loader-->
+<!-- reference: https://www.w3schools.com/howto/howto_css_loader.asp -->
 <div class="loader_container">
     <div class="loader" id="loader"></div>
 </div>
