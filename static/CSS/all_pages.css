@@ -198,27 +198,8 @@ nav a:hover {
     display: none;
 }
 
-footer {
-    background-color: #F2DFA7;
-    border-width: 3px;
-    /* border-style: dashed; */
-    border-color: rgb(216, 212, 212);
-    border-left-style: groove;
-    border-top-style: groove;
-    /*border: 1px solid #A67951;*/
-    color: black;
-    text-align: center;
-    /* display: flex; */
-    /* margin: 100px 0 0 0; */
-    overflow: hidden;
-    /* position: absolute; */
-    bottom: 0;
-    right: 0;
-    /* width: 100%; */
-    position: fixed;
-    border-top-left-radius: 7px;
-    opacity: 0.93;
-    /*float: bottom;*/
+#menu_ul li {
+    margin: 0;
 }
 
 article {
