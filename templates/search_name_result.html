@@ -1,4 +1,9 @@
-{% extends "search_result_withPages.html" %}
+{% extends "search_result.html" %}
+{#{% extends "search_result_withPages.html" %}#}
+
+{% block stylesheet %}
+    {{ super() }}
+{% endblock %}
 
 {% block table_name %}
 Search Result
@@ -31,5 +36,4 @@ Search Result
     </tr>
     {% endfor %}
 </table>
-{{ super() }}
 {% endblock %}

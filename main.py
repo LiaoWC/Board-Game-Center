@@ -33,7 +33,7 @@ app.secret_key = '33_db_project'  # 密鑰
 def home():
     db = Sqlite3Utils.Sqlite3Utils(dbFileName)
     resList = db.home_search()
-    print(resList)
+    # print(resList)
     newList = other_functions.home_top_rating_list(resList)
     return render_template('home.html', bgList=newList)
 
@@ -66,22 +66,29 @@ def search_name():
 
 
 # 直接搜尋名字
-@app.route('/directly_search_name/<path:bg_name>')
-def directly_search_name(bg_name):
+def directly_search_name_pagination(keyword, rows_per_page, cur_page):
     # name, year_published, board_category, min_player, max_player, min_playtime, max_playtime, age, rating, rating_player
     db = Sqlite3Utils.Sqlite3Utils(dbFileName)
-    resList = db.name_search(bg_name)
-    # print(resList)
-    print(bg_name)
+    resList = db.name_search(keyword)
     newList = other_functions.name_search_list(resList)
+    # print(newList)
     return render_template('search_name_result.html', bgList=newList)
+
+
+@app.route('/directly_search_name', methods=['POST'])
+def directly_search_name():
+    # keyword = request.get_json(force=True)['keyword']
+    keyword = request.form['searchName']
+    print('search name keyword: ', keyword)
+    # defalt: 20 rows per page
+    # pagination by ajax hasn't been implemented
+    return directly_search_name_pagination(keyword, 20, 1)
 
 
 @app.route('/game_info/<path:bg_name>')
 def game_info(bg_name):
     db = Sqlite3Utils.Sqlite3Utils(dbFileName)
     resList = db.game_info(bg_name)
-    print("rres:", resList)
     if len(resList) == 0:
         error_str = "This game \"" + bg_name + "\" does not exist in the database."
         return render_template('exception/exception.html', e=error_str, status404=0)

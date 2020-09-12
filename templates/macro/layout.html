@@ -1,11 +1,15 @@
 <!-- generate directly_search_name_form -->
-{% macro directly_search_name_form(label_id,description,text_input_id,btn_input_id) %}
-        <form action="/search_name" method="post">
+{% macro directly_search_name_form(is_outer_active,outer_id,label_id,description,text_input_id,btn_input_id) %}
+    <div class="searchName_frame {% if is_outer_active %}active{% endif %}" id="{{ outer_id }}">
+        {#        <form action="/search_name" method="post">#}
+        <form action="/directly_search_name" method="post">
             <p>
-                <label class="searchName_label_input" id="{{ label_id }}">{{ description }}</label>
+                <label class="searchName_label_input" id="{{ label_id }}"
+                       for="{{ text_input_id }}">{{ description }}</label>
                 <input type="text" id="{{ text_input_id }}" name="searchName" class="text_field" required="required"/>
-                <input class="btn" type="submit" id="{{ btn_input_id }}" name="btn_searchName" value="Go"/>
+                <button class="btn" id="{{ btn_input_id }}" name="btn_searchName">Go</button>
             </p>
         </form>
+    </div>
 {% endmacro %}
 <!---->

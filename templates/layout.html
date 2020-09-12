@@ -47,9 +47,7 @@ P.S.
     <!---->
 
     <!-- Right Top Corner Name Search Area -->
-    <div class="searchName_frame" id="searchName_frame_inUpperRight">
-        {{ directly_search_name_form('','Search games directly?','searchName','btn_searchName') }}
-    </div>
+    {{ directly_search_name_form(False,'searchName_frame_inUpperRight','','Search games directly?','searchName','btn_searchName') }}
     <!---->
 
 </header>
@@ -66,9 +64,9 @@ P.S.
     <ul id="menu_ul" class="active">
         {% for href, name in [
         ['/','Home'],
+        ['https://github.com/LiaoWC/db_33_boardgame','Github'],
         ['/statistics','Statistics'],
-        ['/search_filters','Find board-games suitable for you!'],
-        ['https://github.com/LiaoWC/db_33_boardgame','Github']
+        ['/search_filters','Find board-games suitable for you!']
         ] %}
             <li><a href="{{ href }}">{{ name }}</a></li>
         {% endfor %}
@@ -77,9 +75,7 @@ P.S.
 
 
     <!-- Name Search Area in Navbar -->
-    <div class="searchName_frame active" id="searchNameFrame_inNav">
-        {{ directly_search_name_form("searchName_label_input_inNav","Search games:","searchName_inNav","btn_searchName_inNav") }}
-    </div>
+    {{ directly_search_name_form(True,"searchNameFrame_inNav","searchName_label_input_inNav","Search games:","searchName_inNav","btn_searchName_inNav") }}
     <!---->
 
 </nav>

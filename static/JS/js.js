@@ -54,6 +54,34 @@ function remove_loader() {
     });
 
 }
+
 $(window).on("load", function () {
     setTimeout(remove_loader, 500);
 });
+
+
+///////////////////////////////////////////
+// Async: Search for keywords
+
+// function directly_search_name_ajax(keyword_string) {
+//     $.post(
+//         '/directly_search_name',
+//         JSON.stringify({"keyword": keyword_string}),
+//         'json')
+// }
+//
+// $(document).ready(function () {
+//     $('.searchName_frame form button').click(function () {
+//         let keyword = ''
+//         $(this).siblings().each(function () {
+//             if ($(this).is('input.text_field')) {
+//                 keyword = $(this).val()
+//             }
+//         })
+//         directly_search_name_ajax(keyword)
+//         return false
+//     })
+// })
+
+
+///////////////////////////////////////////
